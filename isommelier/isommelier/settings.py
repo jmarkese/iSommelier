@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '172.22.146.110',
+    'isommelier-jmarkese.c9users.io',
 ]
 
 # Application definition
