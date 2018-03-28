@@ -3,11 +3,17 @@ from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 # Create your models here.
-    
+
 class Variety(models.Model):
+    class Meta:
+        verbose_name_plural = "varieties"
     name = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
 class Winery(models.Model):
+    class Meta:
+        verbose_name_plural = "wineries"
     name = models.CharField(max_length=255)
     region = models.CharField(max_length=255)
     province = models.CharField(max_length=255)
@@ -24,7 +30,6 @@ class Wine(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    
 class Review(models.Model):
     stars = models.PositiveSmallIntegerField(
         validators=[
