@@ -23,6 +23,7 @@ class Winery(models.Model):
     
 class Wine(models.Model):
     name = models.CharField(max_length=255)
+    varietal = models.CharField(max_length=255)
     variety = models.ForeignKey(Variety, on_delete=models.CASCADE)
     winery = models.ForeignKey(Winery, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
