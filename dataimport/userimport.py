@@ -1,9 +1,12 @@
 import csv
 import MySQLdb
+import getpass
 
+user_in = input("Username:")
+passwd_in = getpass.getpass('Password:')
 mydb = MySQLdb.connect(host='localhost',
-    user='keytotalers',
-    passwd='i50mmelier',
+    user=user_in,
+    passwd=passwd_in,
     db='isommelier')
 cursor = mydb.cursor()
 
