@@ -1,0 +1,642 @@
+id,name,created_at,modified_at
+1,White Blend,4/1/2018,4/1/2018
+2,Portuguese Red,4/1/2018,4/1/2018
+3,Pinot Gris,4/1/2018,4/1/2018
+4,Riesling,4/1/2018,4/1/2018
+5,Pinot Noir,4/1/2018,4/1/2018
+6,Tempranillo-Merlot,4/1/2018,4/1/2018
+7,Frappato,4/1/2018,4/1/2018
+8,Gewürztraminer,4/1/2018,4/1/2018
+9,Cabernet Sauvignon,4/1/2018,4/1/2018
+10,Nerello Mascalese,4/1/2018,4/1/2018
+11,Chardonnay,4/1/2018,4/1/2018
+12,Malbec,4/1/2018,4/1/2018
+13,Tempranillo Blend,4/1/2018,4/1/2018
+14,Meritage,4/1/2018,4/1/2018
+15,Red Blend,4/1/2018,4/1/2018
+16,Merlot,4/1/2018,4/1/2018
+17,Nero d'Avola,4/1/2018,4/1/2018
+18,Chenin Blanc,4/1/2018,4/1/2018
+19,Gamay,4/1/2018,4/1/2018
+20,Sauvignon Blanc,4/1/2018,4/1/2018
+21,Viognier-Chardonnay,4/1/2018,4/1/2018
+22,Primitivo,4/1/2018,4/1/2018
+23,Catarratto,4/1/2018,4/1/2018
+24,Inzolia,4/1/2018,4/1/2018
+25,Petit Verdot,4/1/2018,4/1/2018
+26,Monica,4/1/2018,4/1/2018
+27,Bordeaux-style White Blend,4/1/2018,4/1/2018
+28,Grillo,4/1/2018,4/1/2018
+29,Sangiovese,4/1/2018,4/1/2018
+30,Cabernet Franc,4/1/2018,4/1/2018
+31,Champagne Blend,4/1/2018,4/1/2018
+32,Bordeaux-style Red Blend,4/1/2018,4/1/2018
+33,Aglianico,4/1/2018,4/1/2018
+34,Petite Sirah,4/1/2018,4/1/2018
+35,Touriga Nacional,4/1/2018,4/1/2018
+36,Carmenère,4/1/2018,4/1/2018
+37,Albariño,4/1/2018,4/1/2018
+38,Petit Manseng,4/1/2018,4/1/2018
+39,Rosé,4/1/2018,4/1/2018
+40,Zinfandel,4/1/2018,4/1/2018
+41,Vernaccia,4/1/2018,4/1/2018
+42,Rosato,4/1/2018,4/1/2018
+43,Grüner Veltliner,4/1/2018,4/1/2018
+44,Viognier,4/1/2018,4/1/2018
+45,Vermentino,4/1/2018,4/1/2018
+46,Grenache Blanc,4/1/2018,4/1/2018
+47,Syrah,4/1/2018,4/1/2018
+48,Nebbiolo,4/1/2018,4/1/2018
+49,Shiraz-Cabernet Sauvignon,4/1/2018,4/1/2018
+50,Pinot Blanc,4/1/2018,4/1/2018
+51,Alsace white blend,4/1/2018,4/1/2018
+52,Barbera,4/1/2018,4/1/2018
+53,Rhône-style Red Blend,4/1/2018,4/1/2018
+54,Portuguese White,4/1/2018,4/1/2018
+55,Graciano,4/1/2018,4/1/2018
+56,Tannat-Cabernet,4/1/2018,4/1/2018
+57,Sauvignon,4/1/2018,4/1/2018
+58,Sangiovese Grosso,4/1/2018,4/1/2018
+59,Torrontés,4/1/2018,4/1/2018
+60,Prugnolo Gentile,4/1/2018,4/1/2018
+61,G-S-M,4/1/2018,4/1/2018
+62,Verdejo,4/1/2018,4/1/2018
+63,Fumé Blanc,4/1/2018,4/1/2018
+64,Furmint,4/1/2018,4/1/2018
+65,Pinot Bianco,4/1/2018,4/1/2018
+66,Bonarda,4/1/2018,4/1/2018
+67,Shiraz,4/1/2018,4/1/2018
+68,Montepulciano,4/1/2018,4/1/2018
+69,Moscato,4/1/2018,4/1/2018
+70,Grenache,4/1/2018,4/1/2018
+71,Ugni Blanc-Colombard,4/1/2018,4/1/2018
+72,Syrah-Viognier,4/1/2018,4/1/2018
+73,Blaufränkisch,4/1/2018,4/1/2018
+74,Friulano,4/1/2018,4/1/2018
+75,Assyrtico,4/1/2018,4/1/2018
+76,Carignan-Grenache,4/1/2018,4/1/2018
+77,Sagrantino,4/1/2018,4/1/2018
+78,Savagnin,4/1/2018,4/1/2018
+79,Cabernet Sauvignon-Syrah,4/1/2018,4/1/2018
+80,Prosecco,4/1/2018,4/1/2018
+81,Vignoles,4/1/2018,4/1/2018
+82,Sparkling Blend,4/1/2018,4/1/2018
+83,Muscat,4/1/2018,4/1/2018
+84,Muscadelle,4/1/2018,4/1/2018
+85,Shiraz-Viognier,4/1/2018,4/1/2018
+86,Garganega,4/1/2018,4/1/2018
+87,Pinot Grigio,4/1/2018,4/1/2018
+88,Tempranillo,4/1/2018,4/1/2018
+89,Zierfandler,4/1/2018,4/1/2018
+90,Cortese,4/1/2018,4/1/2018
+91,Mencía,4/1/2018,4/1/2018
+92,Zweigelt,4/1/2018,4/1/2018
+93,Melon,4/1/2018,4/1/2018
+94,Rhône-style White Blend,4/1/2018,4/1/2018
+95,Vidal,4/1/2018,4/1/2018
+96,Cannonau,4/1/2018,4/1/2018
+97,Verdelho,4/1/2018,4/1/2018
+98,Marsanne,4/1/2018,4/1/2018
+99,Scheurebe,4/1/2018,4/1/2018
+100,Kerner,4/1/2018,4/1/2018
+101,Syrah-Grenache,4/1/2018,4/1/2018
+102,Dolcetto,4/1/2018,4/1/2018
+103,Vilana,4/1/2018,4/1/2018
+104,Glera,4/1/2018,4/1/2018
+105,Viura,4/1/2018,4/1/2018
+106,Garnacha Tintorera,4/1/2018,4/1/2018
+107,Pinot Nero,4/1/2018,4/1/2018
+108,Roter Veltliner,4/1/2018,4/1/2018
+109,Pinotage,4/1/2018,4/1/2018
+110,Sémillon,4/1/2018,4/1/2018
+111,Pinot Noir-Gamay,4/1/2018,4/1/2018
+112,Antão Vaz,4/1/2018,4/1/2018
+113,Cabernet Sauvignon-Carmenère,4/1/2018,4/1/2018
+114,Verdejo-Viura,4/1/2018,4/1/2018
+115,Verduzzo,4/1/2018,4/1/2018
+116,Verdicchio,4/1/2018,4/1/2018
+117,Silvaner,4/1/2018,4/1/2018
+118,Colombard,4/1/2018,4/1/2018
+119,Carricante,4/1/2018,4/1/2018
+120,Sylvaner,4/1/2018,4/1/2018
+121,Fiano,4/1/2018,4/1/2018
+122,Früburgunder,4/1/2018,4/1/2018
+123,Sousão,4/1/2018,4/1/2018
+124,Roussanne,4/1/2018,4/1/2018
+125,Avesso,4/1/2018,4/1/2018
+126,Cinsault,4/1/2018,4/1/2018
+127,Chinuri,4/1/2018,4/1/2018
+128,Tinta Miúda,4/1/2018,4/1/2018
+129,Muscat Blanc à Petits Grains,4/1/2018,4/1/2018
+130,Portuguese Sparkling,4/1/2018,4/1/2018
+131,Monastrell,4/1/2018,4/1/2018
+132,Xarel-lo,4/1/2018,4/1/2018
+133,Greco,4/1/2018,4/1/2018
+134,Trebbiano,4/1/2018,4/1/2018
+135,"Corvina, Rondinella, Molinara",4/1/2018,4/1/2018
+136,Port,4/1/2018,4/1/2018
+137,Chenin Blanc-Chardonnay,4/1/2018,4/1/2018
+138,Insolia,4/1/2018,4/1/2018
+139,Merlot-Malbec,4/1/2018,4/1/2018
+140,Ribolla Gialla,4/1/2018,4/1/2018
+141,Cabernet Sauvignon-Merlot,4/1/2018,4/1/2018
+142,Duras,4/1/2018,4/1/2018
+143,Weissburgunder,4/1/2018,4/1/2018
+144,Roditis,4/1/2018,4/1/2018
+145,Traminer,4/1/2018,4/1/2018
+146,Papaskarasi,4/1/2018,4/1/2018
+147,Tannat-Syrah,4/1/2018,4/1/2018
+148,Marsanne-Roussanne,4/1/2018,4/1/2018
+149,Charbono,4/1/2018,4/1/2018
+150,Merlot-Argaman,4/1/2018,4/1/2018
+151,Prié Blanc,4/1/2018,4/1/2018
+152,Sherry,4/1/2018,4/1/2018
+153,Provence red blend,4/1/2018,4/1/2018
+154,Tannat,4/1/2018,4/1/2018
+155,Zibibbo,4/1/2018,4/1/2018
+156,Falanghina,4/1/2018,4/1/2018
+157,Garnacha,4/1/2018,4/1/2018
+158,Negroamaro,4/1/2018,4/1/2018
+159,Mourvèdre,4/1/2018,4/1/2018
+160,Syrah-Cabernet,4/1/2018,4/1/2018
+161,Müller-Thurgau,4/1/2018,4/1/2018
+162,Pinot Meunier,4/1/2018,4/1/2018
+163,Cabernet Sauvignon-Sangiovese,4/1/2018,4/1/2018
+164,Austrian Red Blend,4/1/2018,4/1/2018
+165,Teroldego,4/1/2018,4/1/2018
+166,Pansa Blanca,4/1/2018,4/1/2018
+167,Muskat Ottonel,4/1/2018,4/1/2018
+168,Sauvignon Blanc-Semillon,4/1/2018,4/1/2018
+169,Claret,4/1/2018,4/1/2018
+170,Semillon-Sauvignon Blanc,4/1/2018,4/1/2018
+171,Bical,4/1/2018,4/1/2018
+172,Moscatel,4/1/2018,4/1/2018
+173,Rosado,4/1/2018,4/1/2018
+174,Viura-Chardonnay,4/1/2018,4/1/2018
+175,Baga,4/1/2018,4/1/2018
+176,Malvasia Bianca,4/1/2018,4/1/2018
+177,Gelber Muskateller,4/1/2018,4/1/2018
+178,Malbec-Merlot,4/1/2018,4/1/2018
+179,Monastrell-Syrah,4/1/2018,4/1/2018
+180,Malbec-Tannat,4/1/2018,4/1/2018
+181,Malbec-Cabernet Franc,4/1/2018,4/1/2018
+182,Turbiana,4/1/2018,4/1/2018
+183,Refosco,4/1/2018,4/1/2018
+184,Alvarinho,4/1/2018,4/1/2018
+185,Manzoni,4/1/2018,4/1/2018
+186,Aragonês,4/1/2018,4/1/2018
+187,Agiorgitiko,4/1/2018,4/1/2018
+188,Malagousia,4/1/2018,4/1/2018
+189,Assyrtiko,4/1/2018,4/1/2018
+190,Ruché,4/1/2018,4/1/2018
+191,Welschriesling,4/1/2018,4/1/2018
+192,Tinta de Toro,4/1/2018,4/1/2018
+193,Cabernet Moravia,4/1/2018,4/1/2018
+194,Rieslaner,4/1/2018,4/1/2018
+195,Traminette,4/1/2018,4/1/2018
+196,Chambourcin,4/1/2018,4/1/2018
+197,Nero di Troia,4/1/2018,4/1/2018
+198,Lambrusco di Sorbara,4/1/2018,4/1/2018
+199,Cesanese,4/1/2018,4/1/2018
+200,Feteasca Neagra,4/1/2018,4/1/2018
+201,Lagrein,4/1/2018,4/1/2018
+202,Tinta Fina,4/1/2018,4/1/2018
+203,St. Laurent,4/1/2018,4/1/2018
+204,Marsanne-Viognier,4/1/2018,4/1/2018
+205,Cabernet Sauvignon-Shiraz,4/1/2018,4/1/2018
+206,Syrah-Cabernet Sauvignon,4/1/2018,4/1/2018
+207,Gewürztraminer-Riesling,4/1/2018,4/1/2018
+208,Pugnitello,4/1/2018,4/1/2018
+209,Cerceal,4/1/2018,4/1/2018
+210,Touriga Nacional Blend,4/1/2018,4/1/2018
+211,Austrian white blend,4/1/2018,4/1/2018
+212,Tocai,4/1/2018,4/1/2018
+213,Tinta Roriz,4/1/2018,4/1/2018
+214,Chardonnay-Viognier,4/1/2018,4/1/2018
+215,Fernão Pires,4/1/2018,4/1/2018
+216,Cabernet Franc-Cabernet Sauvignon,4/1/2018,4/1/2018
+217,Grenache-Syrah,4/1/2018,4/1/2018
+218,Seyval Blanc,4/1/2018,4/1/2018
+219,Muscat Canelli,4/1/2018,4/1/2018
+220,Cabernet Merlot,4/1/2018,4/1/2018
+221,Tempranillo-Cabernet Sauvignon,4/1/2018,4/1/2018
+222,Arinto,4/1/2018,4/1/2018
+223,Aragonez,4/1/2018,4/1/2018
+224,Merlot-Cabernet Franc,4/1/2018,4/1/2018
+225,Syrah-Petite Sirah,4/1/2018,4/1/2018
+226,Cabernet Blend,4/1/2018,4/1/2018
+227,Maturana,4/1/2018,4/1/2018
+228,Pecorino,4/1/2018,4/1/2018
+229,Rotgipfler,4/1/2018,4/1/2018
+230,Kinali Yapincak,4/1/2018,4/1/2018
+231,Cabernet Franc-Carmenère,4/1/2018,4/1/2018
+232,Magliocco,4/1/2018,4/1/2018
+233,Gamay Noir,4/1/2018,4/1/2018
+234,Sauvignon Gris,4/1/2018,4/1/2018
+235,Spätburgunder,4/1/2018,4/1/2018
+236,Picpoul,4/1/2018,4/1/2018
+237,Vidal Blanc,4/1/2018,4/1/2018
+238,Albanello,4/1/2018,4/1/2018
+239,White Port,4/1/2018,4/1/2018
+240,Arneis,4/1/2018,4/1/2018
+241,Malvasia,4/1/2018,4/1/2018
+242,Plavac Mali,4/1/2018,4/1/2018
+243,Lemberger,4/1/2018,4/1/2018
+244,Saperavi,4/1/2018,4/1/2018
+245,Altesse,4/1/2018,4/1/2018
+246,Blanc du Bois,4/1/2018,4/1/2018
+247,Provence white blend,4/1/2018,4/1/2018
+248,Nosiola,4/1/2018,4/1/2018
+249,Dornfelder,4/1/2018,4/1/2018
+250,Roussanne-Viognier,4/1/2018,4/1/2018
+251,Ojaleshi,4/1/2018,4/1/2018
+252,Godello,4/1/2018,4/1/2018
+253,Mondeuse,4/1/2018,4/1/2018
+254,Perricone,4/1/2018,4/1/2018
+255,Pedro Ximénez,4/1/2018,4/1/2018
+256,Auxerrois,4/1/2018,4/1/2018
+257,Syrah-Merlot,4/1/2018,4/1/2018
+258,Albana,4/1/2018,4/1/2018
+259,Muskat,4/1/2018,4/1/2018
+260,Lambrusco,4/1/2018,4/1/2018
+261,Cabernet Sauvignon-Malbec,4/1/2018,4/1/2018
+262,Tinto Fino,4/1/2018,4/1/2018
+263,Malbec-Cabernet Sauvignon,4/1/2018,4/1/2018
+264,Moschofilero,4/1/2018,4/1/2018
+265,Grechetto,4/1/2018,4/1/2018
+266,Encruzado,4/1/2018,4/1/2018
+267,Carignano,4/1/2018,4/1/2018
+268,Cabernet Franc-Merlot,4/1/2018,4/1/2018
+269,Torbato,4/1/2018,4/1/2018
+270,Syrah-Petit Verdot,4/1/2018,4/1/2018
+271,Garnacha Blanca,4/1/2018,4/1/2018
+272,Pallagrello,4/1/2018,4/1/2018
+273,Morava,4/1/2018,4/1/2018
+274,Syrah-Mourvèdre,4/1/2018,4/1/2018
+275,Aleatico,4/1/2018,4/1/2018
+276,Carcajolu,4/1/2018,4/1/2018
+277,Kisi,4/1/2018,4/1/2018
+278,Shiraz-Grenache,4/1/2018,4/1/2018
+279,Palomino,4/1/2018,4/1/2018
+280,Grenache-Carignan,4/1/2018,4/1/2018
+281,Nascetta,4/1/2018,4/1/2018
+282,Siria,4/1/2018,4/1/2018
+283,Malbec-Syrah,4/1/2018,4/1/2018
+284,Asprinio,4/1/2018,4/1/2018
+285,Feteascǎ Regalǎ,4/1/2018,4/1/2018
+286,Lambrusco Grasparossa,4/1/2018,4/1/2018
+287,Marselan,4/1/2018,4/1/2018
+288,Tocai Friulano,4/1/2018,4/1/2018
+289,Schiava,4/1/2018,4/1/2018
+290,Alfrocheiro,4/1/2018,4/1/2018
+291,Chardonnay-Semillon,4/1/2018,4/1/2018
+292,Corvina,4/1/2018,4/1/2018
+293,Norton,4/1/2018,4/1/2018
+294,Alicante Bouschet,4/1/2018,4/1/2018
+295,Tokaji,4/1/2018,4/1/2018
+296,Moscadello,4/1/2018,4/1/2018
+297,Cabernet Sauvignon-Tempranillo,4/1/2018,4/1/2018
+298,Carignan,4/1/2018,4/1/2018
+299,Loureiro-Arinto,4/1/2018,4/1/2018
+300,Cabernet-Syrah,4/1/2018,4/1/2018
+301,Sauvignon Blanc-Chardonnay,4/1/2018,4/1/2018
+302,Symphony,4/1/2018,4/1/2018
+303,Edelzwicker,4/1/2018,4/1/2018
+304,Madeira Blend,4/1/2018,4/1/2018
+305,Black Muscat,4/1/2018,4/1/2018
+306,Grenache Noir,4/1/2018,4/1/2018
+307,Durella,4/1/2018,4/1/2018
+308,Xinomavro,4/1/2018,4/1/2018
+309,Tinto del Pais,4/1/2018,4/1/2018
+310,Merlot-Cabernet Sauvignon,4/1/2018,4/1/2018
+311,Cercial,4/1/2018,4/1/2018
+312,Johannisberg Riesling,4/1/2018,4/1/2018
+313,Petite Verdot,4/1/2018,4/1/2018
+314,Passerina,4/1/2018,4/1/2018
+315,Valdiguié,4/1/2018,4/1/2018
+316,Colombard-Sauvignon Blanc,4/1/2018,4/1/2018
+317,Kangoun,4/1/2018,4/1/2018
+318,Loureiro,4/1/2018,4/1/2018
+319,Posip,4/1/2018,4/1/2018
+320,Uva di Troia,4/1/2018,4/1/2018
+321,Gros and Petit Manseng,4/1/2018,4/1/2018
+322,Jacquère,4/1/2018,4/1/2018
+323,Kalecik Karasi,4/1/2018,4/1/2018
+324,Karasakiz,4/1/2018,4/1/2018
+325,Mourvèdre-Syrah,4/1/2018,4/1/2018
+326,Negrette,4/1/2018,4/1/2018
+327,Zierfandler-Rotgipfler,4/1/2018,4/1/2018
+328,Clairette,4/1/2018,4/1/2018
+329,Raboso,4/1/2018,4/1/2018
+330,País,4/1/2018,4/1/2018
+331,Mauzac,4/1/2018,4/1/2018
+332,Pinot Auxerrois,4/1/2018,4/1/2018
+333,Chenin Blanc-Sauvignon Blanc,4/1/2018,4/1/2018
+334,Diamond,4/1/2018,4/1/2018
+335,Marzemino,4/1/2018,4/1/2018
+336,Tinta Barroca,4/1/2018,4/1/2018
+337,Chardonnay-Sauvignon Blanc,4/1/2018,4/1/2018
+338,Castelão,4/1/2018,4/1/2018
+339,Trebbiano Spoletino,4/1/2018,4/1/2018
+340,Teran,4/1/2018,4/1/2018
+341,Trepat,4/1/2018,4/1/2018
+342,Freisa,4/1/2018,4/1/2018
+343,Neuburger,4/1/2018,4/1/2018
+344,Sämling,4/1/2018,4/1/2018
+345,Chasselas,4/1/2018,4/1/2018
+346,Hárslevelü,4/1/2018,4/1/2018
+347,Trincadeira,4/1/2018,4/1/2018
+348,Merlot-Tannat,4/1/2018,4/1/2018
+349,Rkatsiteli,4/1/2018,4/1/2018
+350,Melnik,4/1/2018,4/1/2018
+351,Siegerrebe,4/1/2018,4/1/2018
+352,Trousseau Gris,4/1/2018,4/1/2018
+353,Grenache Blend,4/1/2018,4/1/2018
+354,Gros Manseng,4/1/2018,4/1/2018
+355,Portuguese Rosé,4/1/2018,4/1/2018
+356,Brachetto,4/1/2018,4/1/2018
+357,Mantonico,4/1/2018,4/1/2018
+358,Ekigaïna,4/1/2018,4/1/2018
+359,Muskateller,4/1/2018,4/1/2018
+360,Aligoté,4/1/2018,4/1/2018
+361,Sangiovese Cabernet,4/1/2018,4/1/2018
+362,Touriga Nacional-Cabernet Sauvignon,4/1/2018,4/1/2018
+363,Muscat Blanc,4/1/2018,4/1/2018
+364,Argaman,4/1/2018,4/1/2018
+365,Viognier-Roussanne,4/1/2018,4/1/2018
+366,Pallagrello Bianco,4/1/2018,4/1/2018
+367,Bobal,4/1/2018,4/1/2018
+368,Malvasia Istriana,4/1/2018,4/1/2018
+369,Cabernet Sauvignon-Cabernet Franc,4/1/2018,4/1/2018
+370,Baco Noir,4/1/2018,4/1/2018
+371,Veltliner,4/1/2018,4/1/2018
+372,Tempranillo-Tannat,4/1/2018,4/1/2018
+373,Morillon,4/1/2018,4/1/2018
+374,Touriga Franca,4/1/2018,4/1/2018
+375,Picolit,4/1/2018,4/1/2018
+376,Barbera-Nebbiolo,4/1/2018,4/1/2018
+377,Prieto Picudo,4/1/2018,4/1/2018
+378,Gaglioppo,4/1/2018,4/1/2018
+379,Tokay,4/1/2018,4/1/2018
+380,Sacy,4/1/2018,4/1/2018
+381,Piedirosso,4/1/2018,4/1/2018
+382,Piquepoul Blanc,4/1/2018,4/1/2018
+383,Mansois,4/1/2018,4/1/2018
+384,Chardonnay-Sauvignon,4/1/2018,4/1/2018
+385,Tempranillo-Garnacha,4/1/2018,4/1/2018
+386,Carmenère-Cabernet Sauvignon,4/1/2018,4/1/2018
+387,Chenin Blanc-Viognier,4/1/2018,4/1/2018
+388,Susumaniello,4/1/2018,4/1/2018
+389,Vitovska,4/1/2018,4/1/2018
+390,Orange Muscat,4/1/2018,4/1/2018
+391,Grauburgunder,4/1/2018,4/1/2018
+392,Carignane,4/1/2018,4/1/2018
+393,Moscatel Roxo,4/1/2018,4/1/2018
+394,Tannat-Merlot,4/1/2018,4/1/2018
+395,Nerello Cappuccio,4/1/2018,4/1/2018
+396,Counoise,4/1/2018,4/1/2018
+397,Macabeo,4/1/2018,4/1/2018
+398,Mazuelo,4/1/2018,4/1/2018
+399,Sauvignon-Sémillon,4/1/2018,4/1/2018
+400,Tinta del Pais,4/1/2018,4/1/2018
+401,Vranec,4/1/2018,4/1/2018
+402,Mavrud,4/1/2018,4/1/2018
+403,Cesanese d'Affile,4/1/2018,4/1/2018
+404,Moscato Giallo,4/1/2018,4/1/2018
+405,Debit,4/1/2018,4/1/2018
+406,Verdil,4/1/2018,4/1/2018
+407,Cabernet,4/1/2018,4/1/2018
+408,Verduzzo Friulano ,4/1/2018,4/1/2018
+409,Treixadura,4/1/2018,4/1/2018
+410,Loin de l'Oeil,4/1/2018,4/1/2018
+411,Coda di Volpe,4/1/2018,4/1/2018
+412,Grenache-Mourvèdre,4/1/2018,4/1/2018
+413,Forcallà,4/1/2018,4/1/2018
+414,Viura-Verdejo,4/1/2018,4/1/2018
+415,Bombino Bianco,4/1/2018,4/1/2018
+416,Pinot-Chardonnay,4/1/2018,4/1/2018
+417,Syrah-Tempranillo,4/1/2018,4/1/2018
+418,Cabernet Sauvignon-Barbera,4/1/2018,4/1/2018
+419,Merlot-Cabernet,4/1/2018,4/1/2018
+420,Muscat d'Alexandrie,4/1/2018,4/1/2018
+421,Jaen,4/1/2018,4/1/2018
+422,Tinta del Toro,4/1/2018,4/1/2018
+423,Timorasso,4/1/2018,4/1/2018
+424,Pigato,4/1/2018,4/1/2018
+425,Sangiovese-Cabernet Sauvignon,4/1/2018,4/1/2018
+426,Shiraz-Cabernet,4/1/2018,4/1/2018
+427,Viognier-Gewürztraminer,4/1/2018,4/1/2018
+428,Prunelard,4/1/2018,4/1/2018
+429,Sauvignon Blanc-Chenin Blanc,4/1/2018,4/1/2018
+430,Gros Plant,4/1/2018,4/1/2018
+431,Malbec-Petit Verdot,4/1/2018,4/1/2018
+432,Colombard-Ugni Blanc,4/1/2018,4/1/2018
+433,Grignolino,4/1/2018,4/1/2018
+434,Garnacha-Syrah,4/1/2018,4/1/2018
+435,Rufete,4/1/2018,4/1/2018
+436,Tempranillo-Shiraz,4/1/2018,4/1/2018
+437,Mtsvane,4/1/2018,4/1/2018
+438,Chardonnay-Pinot Gris,4/1/2018,4/1/2018
+439,Marawi,4/1/2018,4/1/2018
+440,Chardonnay-Pinot Blanc,4/1/2018,4/1/2018
+441,Mataro,4/1/2018,4/1/2018
+442,Tinta Cao,4/1/2018,4/1/2018
+443,Blauer Portugieser,4/1/2018,4/1/2018
+444,Ugni Blanc,4/1/2018,4/1/2018
+445,Groppello,4/1/2018,4/1/2018
+446,Semillon-Chardonnay,4/1/2018,4/1/2018
+447,Irsai Oliver,4/1/2018,4/1/2018
+448,Alvarelhão,4/1/2018,4/1/2018
+449,Poulsard,4/1/2018,4/1/2018
+450,Grenache-Shiraz,4/1/2018,4/1/2018
+451,Baga-Touriga Nacional,4/1/2018,4/1/2018
+452,Carineña,4/1/2018,4/1/2018
+453,Pignoletto,4/1/2018,4/1/2018
+454,Muscatel,4/1/2018,4/1/2018
+455,Mavrodaphne,4/1/2018,4/1/2018
+456,Ciliegiolo,4/1/2018,4/1/2018
+457,Viognier-Grenache Blanc,4/1/2018,4/1/2018
+458,Greco Bianco,4/1/2018,4/1/2018
+459,Cabernet Sauvignon-Merlot-Shiraz,4/1/2018,4/1/2018
+460,Sciaccerellu,4/1/2018,4/1/2018
+461,Zelen,4/1/2018,4/1/2018
+462,Alicante,4/1/2018,4/1/2018
+463,Emir,4/1/2018,4/1/2018
+464,Rosenmuskateller,4/1/2018,4/1/2018
+465,Tsolikouri,4/1/2018,4/1/2018
+466,Narince,4/1/2018,4/1/2018
+467,Malbec-Cabernet,4/1/2018,4/1/2018
+468,Touriga,4/1/2018,4/1/2018
+469,Grecanico,4/1/2018,4/1/2018
+470,Carmenère-Syrah,4/1/2018,4/1/2018
+471,Madeleine Angevine,4/1/2018,4/1/2018
+472,Mavroudi,4/1/2018,4/1/2018
+473,Pinot Blanc-Pinot Noir,4/1/2018,4/1/2018
+474,Muscat Hamburg,4/1/2018,4/1/2018
+475,Tempranillo Blanco,4/1/2018,4/1/2018
+476,Casavecchia,4/1/2018,4/1/2018
+477,Pinot Gris-Gewürztraminer,4/1/2018,4/1/2018
+478,White Riesling,4/1/2018,4/1/2018
+479,Tinto Velasco,4/1/2018,4/1/2018
+480,Hondarrabi Zuri,4/1/2018,4/1/2018
+481,Nuragus,4/1/2018,4/1/2018
+482,Xynisteri,4/1/2018,4/1/2018
+483,Kadarka,4/1/2018,4/1/2018
+484,Sauvignon Musqué,4/1/2018,4/1/2018
+485,Roussanne-Marsanne,4/1/2018,4/1/2018
+486,Incrocio Manzoni,4/1/2018,4/1/2018
+487,Terrantez,4/1/2018,4/1/2018
+488,Bual,4/1/2018,4/1/2018
+489,Okuzgozu,4/1/2018,4/1/2018
+490,Rivaner,4/1/2018,4/1/2018
+491,Doña Blanca,4/1/2018,4/1/2018
+492,Graševina,4/1/2018,4/1/2018
+493,Lambrusco Salamino,4/1/2018,4/1/2018
+494,Sangiovese-Syrah,4/1/2018,4/1/2018
+495,Tannat-Cabernet Franc,4/1/2018,4/1/2018
+496,Thrapsathiri,4/1/2018,4/1/2018
+497,Fer Servadou,4/1/2018,4/1/2018
+498,Mission,4/1/2018,4/1/2018
+499,Kekfrankos,4/1/2018,4/1/2018
+500,Cococciola,4/1/2018,4/1/2018
+501,Blauburgunder,4/1/2018,4/1/2018
+502,Marquette,4/1/2018,4/1/2018
+503,Romorantin,4/1/2018,4/1/2018
+504,Verdejo-Sauvignon Blanc,4/1/2018,4/1/2018
+505,Braucol,4/1/2018,4/1/2018
+506,Malvasia-Viura,4/1/2018,4/1/2018
+507,Savatiano,4/1/2018,4/1/2018
+508,Cabernet Franc-Malbec,4/1/2018,4/1/2018
+509,Pallagrello Nero,4/1/2018,4/1/2018
+510,Rebula,4/1/2018,4/1/2018
+511,Vespolina,4/1/2018,4/1/2018
+512,Shiraz-Malbec,4/1/2018,4/1/2018
+513,Rebo,4/1/2018,4/1/2018
+514,Macabeo-Chardonnay,4/1/2018,4/1/2018
+515,Tempranillo-Malbec,4/1/2018,4/1/2018
+516,Tamjanika,4/1/2018,4/1/2018
+517,Trousseau,4/1/2018,4/1/2018
+518,Bacchus,4/1/2018,4/1/2018
+519,Syrah-Malbec,4/1/2018,4/1/2018
+520,Syrah-Cabernet Franc,4/1/2018,4/1/2018
+521,Macabeo-Moscatel,4/1/2018,4/1/2018
+522,Cariñena-Garnacha,4/1/2018,4/1/2018
+523,Plyto,4/1/2018,4/1/2018
+524,Códega do Larinho,4/1/2018,4/1/2018
+525,Sideritis,4/1/2018,4/1/2018
+526,Çalkarası,4/1/2018,4/1/2018
+527,Azal,4/1/2018,4/1/2018
+528,Moscatel Graúdo,4/1/2018,4/1/2018
+529,Viosinho,4/1/2018,4/1/2018
+530,Moschofilero-Chardonnay,4/1/2018,4/1/2018
+531,Paralleda,4/1/2018,4/1/2018
+532,Rara Neagra,4/1/2018,4/1/2018
+533,Malvasia di Candia,4/1/2018,4/1/2018
+534,Maria Gomes,4/1/2018,4/1/2018
+535,Molinara,4/1/2018,4/1/2018
+536,Malvar,4/1/2018,4/1/2018
+537,Airen,4/1/2018,4/1/2018
+538,Erbaluce,4/1/2018,4/1/2018
+539,Muscat of Alexandria,4/1/2018,4/1/2018
+540,Verdosilla,4/1/2018,4/1/2018
+541,Abouriou,4/1/2018,4/1/2018
+542,Pinot Noir-Syrah,4/1/2018,4/1/2018
+543,Nielluciu,4/1/2018,4/1/2018
+544,Malbec-Bonarda,4/1/2018,4/1/2018
+545,Vespaiolo,4/1/2018,4/1/2018
+546,Malbec-Carménère,4/1/2018,4/1/2018
+547,Biancolella,4/1/2018,4/1/2018
+548,Sauvignon Blanc-Verdejo,4/1/2018,4/1/2018
+549,Aidani,4/1/2018,4/1/2018
+550,Garnacha-Monastrell,4/1/2018,4/1/2018
+551,Vinhão,4/1/2018,4/1/2018
+552,Souzao,4/1/2018,4/1/2018
+553,Roter Traminer,4/1/2018,4/1/2018
+554,Moscatel de Alejandría,4/1/2018,4/1/2018
+555,Rolle,4/1/2018,4/1/2018
+556,Tinta Francisca,4/1/2018,4/1/2018
+557,Malvasia Nera,4/1/2018,4/1/2018
+558,Orangetraube,4/1/2018,4/1/2018
+559,Riesling-Chardonnay,4/1/2018,4/1/2018
+560,Žilavka,4/1/2018,4/1/2018
+561,Portuguiser,4/1/2018,4/1/2018
+562,Listán Negro,4/1/2018,4/1/2018
+563,Pinotage-Merlot,4/1/2018,4/1/2018
+564,Muscadine,4/1/2018,4/1/2018
+565,Maria Gomes-Bical,4/1/2018,4/1/2018
+566,Grolleau,4/1/2018,4/1/2018
+567,Zlahtina,4/1/2018,4/1/2018
+568,Syrah-Grenache-Viognier,4/1/2018,4/1/2018
+569,Jacquez,4/1/2018,4/1/2018
+570,Gouveio,4/1/2018,4/1/2018
+571,Canaiolo,4/1/2018,4/1/2018
+572,Carignan-Syrah,4/1/2018,4/1/2018
+573,Bombino Nero,4/1/2018,4/1/2018
+574,Chardonnay-Riesling,4/1/2018,4/1/2018
+575,Malagouzia-Chardonnay,4/1/2018,4/1/2018
+576,Mavrotragano,4/1/2018,4/1/2018
+577,Bovale,4/1/2018,4/1/2018
+578,Frankovka,4/1/2018,4/1/2018
+579,Shiraz-Roussanne,4/1/2018,4/1/2018
+580,Cabernet-Shiraz,4/1/2018,4/1/2018
+581,Syrah-Carignan,4/1/2018,4/1/2018
+582,Elbling,4/1/2018,4/1/2018
+583,Gragnano,4/1/2018,4/1/2018
+584,Garnacha Blend,4/1/2018,4/1/2018
+585,Pinot Blanc-Chardonnay,4/1/2018,4/1/2018
+586,Schwartzriesling,4/1/2018,4/1/2018
+587,Petit Meslier,4/1/2018,4/1/2018
+588,Bastardo,4/1/2018,4/1/2018
+589,Vidadillo,4/1/2018,4/1/2018
+590,Misket,4/1/2018,4/1/2018
+591,Chardonnay Weissburgunder,4/1/2018,4/1/2018
+592,Other,4/1/2018,4/1/2018
+593,Robola,4/1/2018,4/1/2018
+594,Merlot-Shiraz,4/1/2018,4/1/2018
+595,Malagouzia,4/1/2018,4/1/2018
+596,Folle Blanche,4/1/2018,4/1/2018
+597,Malbec Blend,4/1/2018,4/1/2018
+598,Merlot-Syrah,4/1/2018,4/1/2018
+599,Tamianka,4/1/2018,4/1/2018
+600,Cabernet Pfeffer,4/1/2018,4/1/2018
+601,Morio Muskat,4/1/2018,4/1/2018
+602,Rabigato,4/1/2018,4/1/2018
+603,Babić,4/1/2018,4/1/2018
+604,Roviello,4/1/2018,4/1/2018
+605,Yapincak,4/1/2018,4/1/2018
+606,Sauvignonasse,4/1/2018,4/1/2018
+607,Viognier-Marsanne,4/1/2018,4/1/2018
+608,Mandilaria,4/1/2018,4/1/2018
+609,Meseguera,4/1/2018,4/1/2018
+610,Alvarinho-Chardonnay,4/1/2018,4/1/2018
+611,Saperavi-Merlot,4/1/2018,4/1/2018
+612,Pinot Blanc-Viognier,4/1/2018,4/1/2018
+613,Teroldego Rotaliano,4/1/2018,4/1/2018
+614,Biancu Gentile,4/1/2018,4/1/2018
+615,Garnacha-Tempranillo,4/1/2018,4/1/2018
+616,Xinisteri,4/1/2018,4/1/2018
+617,Sauvignon Blanc-Sauvignon Gris,4/1/2018,4/1/2018
+618,Trebbiano di Lugana,4/1/2018,4/1/2018
+619,Albarossa,4/1/2018,4/1/2018
+620,Ryzlink Rýnský,4/1/2018,4/1/2018
+621,Verdeca,4/1/2018,4/1/2018
+622,Cabernet Sauvignon Grenache,4/1/2018,4/1/2018
+623,Tămâioasă Românească,4/1/2018,4/1/2018
+624,Black Monukka,4/1/2018,4/1/2018
+625,Merlot-Grenache,4/1/2018,4/1/2018
+626,Vranac,4/1/2018,4/1/2018
+627,Tempranillo-Syrah,4/1/2018,4/1/2018
+628,Chardonel,4/1/2018,4/1/2018
+629,Silvaner-Traminer,4/1/2018,4/1/2018
+630,Uvalino,4/1/2018,4/1/2018
+631,Merseguera-Sauvignon Blanc,4/1/2018,4/1/2018
+632,Cabernet-Malbec,4/1/2018,4/1/2018
+633,Boğazkere,4/1/2018,4/1/2018
+634,Gelber Traminer,4/1/2018,4/1/2018
+635,Vermentino Nero,4/1/2018,4/1/2018
+636,Cayuga,4/1/2018,4/1/2018
+637,Tinta Amarela,4/1/2018,4/1/2018
+638,Tinta Negra Mole,4/1/2018,4/1/2018
+639,Moscato Rosa,4/1/2018,4/1/2018
+640,Chelois,4/1/2018,4/1/2018
+641,Sauvignon Blanc-Assyrtiko,4/1/2018,4/1/2018
