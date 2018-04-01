@@ -32,12 +32,12 @@ class Wine(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 class Review(models.Model):
-    stars = models.PositiveSmallIntegerField(
+    rating = models.PositiveSmallIntegerField(
         validators=[
-            MaxValueValidator(5),
-            MinValueValidator(1)
+            MaxValueValidator(100),
+            MinValueValidator(0)
         ],
-        blank=True, 
+        blank=True,
         null=True
     )
     comment = models.TextField()
