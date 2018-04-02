@@ -15,7 +15,7 @@ cursor.execute('SET NAMES utf8;')
 cursor.execute('SET CHARACTER SET utf8;')
 cursor.execute('SET character_set_connection=utf8;')
 
-with open('wine.csv', 'r') as csvfile:
+with open('Wine.csv', 'r') as csvfile:
     reader = csv.reader(csvfile, delimiter=',')
     for row in reader:
         cursor.execute("SELECT id FROM winery WHERE name=%s;", [row[5]])
