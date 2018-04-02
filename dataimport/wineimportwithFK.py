@@ -20,11 +20,11 @@ with open('Wine.csv', 'r') as csvfile:
     for row in reader:
         cursor.execute("SELECT id FROM winereviews_winery WHERE name=%s;", [row[4]])
         winery_id = cursor.fetchone()
-        if winery_id is null:
+        if winery_id is None:
             winery_id = 0;
         cursor.execute("SELECT id FROM winereviews_variety WHERE name=%s;", [row[5]])
         variety_id = cursor.fetchone()
-        if variety_id is null:
+        if variety_id is None:
             variety_id = 0;
         values = [row[0],row[1],row[2],row[3], variety_id, winery_id, row[5]]
         cursor.execute('INSERT INTO winereviews_wine(id, name, price, description, variety_id , winery_id, varietal, created_at, updated_at ) VALUES(%s,%s,%s,%s,%s,%s,%s, NOW(),NOW())', values)
