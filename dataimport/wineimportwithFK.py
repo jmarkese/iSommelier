@@ -18,11 +18,11 @@ cursor.execute('SET character_set_connection=utf8;')
 with open('Wine.csv', 'r') as csvfile:
     reader = csv.reader(csvfile, delimiter=',')
     for row in reader:
-        cursor.execute("SELECT id FROM winereviews_winery WHERE name=%s;", [row[5]])
+        cursor.execute("SELECT id FROM winereviews_winery WHERE name=%s;", [row[4]])
         winery_id = cursor.fetchone()
-        cursor.execute("select id from winereviews_variety where name =%s;" [row[6]])
+        cursor.execute("select id from winereviews_variety where name =%s;" [row[5]])
         variety_id = cursor.fetchone()
-        values = [row[1],row[2],row[3],row[4], variety_id, winery_id, row[6]]
+        values = [row[0],row[1],row[2],row[3], variety_id, winery_id, row[5]]
         cursor.execute('INSERT INTO winereviews_wine(id, name, price, description, variety_id , winery_id, varietal, created_at, updated_at ) VALUES(%s,%s,%s,%s,%s,%s,%s, NOW(),NOW())', values)
 
 mydb.commit()
