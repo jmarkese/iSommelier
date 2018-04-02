@@ -20,7 +20,7 @@ with open('Wine.csv', 'r') as csvfile:
     for row in reader:
         cursor.execute("SELECT id FROM winereviews_winery WHERE name=%s;", [row[4]])
         winery_id = cursor.fetchone()
-        if variety_id is null:
+        if winery_id is null:
             winery_id = 0;
         cursor.execute("SELECT id FROM winereviews_variety WHERE name=%s;", [row[5]])
         variety_id = cursor.fetchone()
