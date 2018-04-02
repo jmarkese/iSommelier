@@ -19,10 +19,10 @@ with open('wine.csv', 'r') as csvfile:
     reader = csv.reader(csvfile, delimiter=',')
     for row in reader:
         cursor.execute("SELECT id FROM winery WHERE name=%s;", [row[5]])
-        user_id = cursor.fetchone()
+        winery_id = cursor.fetchone()
         cursor.execute("select id from variety where name =%s;" [row[6]])
         variety_id = cursor.fetchone()
-        values = [row[1],row[2],row[3],row[4], wine_id, variety_id, row[6]]
+        values = [row[1],row[2],row[3],row[4], winery_id, variety_id, row[6]]
         cursor.execute('INSERT INTO winereviews_wine(id, name, price, description, variety_id , winery_id, varietal, created_at, updated_at ) VALUES(%s,%s,%s,%s,%s,%s,%s, NOW(),NOW())', values)
 
 mydb.commit()
