@@ -19,11 +19,11 @@ with open('Wine.csv', 'r') as csvfile:
     reader = csv.reader(csvfile, delimiter=',')
     for row in reader:
         try:   
-            cursor.execute("SELECT id FROM winereviews_winery WHERE concat(name)=%s;", [row[4]])
+            cursor.execute("SELECT id FROM winereviews_winery WHERE concat(name)=%s;", [row[4].encode('utf-8')])
             winery_id = cursor.fetchone()
             if winery_id is None:
                 winery_id = 1;
-            cursor.execute("SELECT id FROM winereviews_variety WHERE concat(name)=%s;", [row[5]])
+            cursor.execute("SELECT id FROM winereviews_variety WHERE concat(name)=%s;", [row[5].encode('utf-8'])
             variety_id = cursor.fetchone()
             if variety_id is None:
                 variety_id = 1;
@@ -32,5 +32,6 @@ with open('Wine.csv', 'r') as csvfile:
             if row[0] % 1000 == 0 or int(row[0]) == 129970:
                 mydb.commit()
         except:
-            print (row[5])
+            raise
+mydb.commit()
 cursor.close()
