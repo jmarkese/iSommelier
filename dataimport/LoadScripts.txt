@@ -1,7 +1,12 @@
-LOAD DATA LOCAL INFILE '/home/isommelier/dataimport/Winery.csv'
+LOAD DATA LOCAL INFILE '/home/keytotalers/dataimport/Winery.csv'
 INTO TABLE winereviews_winery
 FIELDS TERMINATED BY ',';
 
-LOAD DATA LOCAL INFILE '/home/isommelier/dataimport/Variety.csv'
+LOAD DATA LOCAL INFILE '/home/keytotalers/dataimport/Variety.csv'
 INTO TABLE winereviews_variety
 FIELDS TERMINATED BY ',';
+
+LOAD DATA LOCAL INFILE '/home/keytotalers/dataimport/Wine.csv'
+INTO TABLE winereviews_wine
+FIELDS TERMINATED BY ',';
+
