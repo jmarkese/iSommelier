@@ -28,7 +28,7 @@ with open('Wine.csv', 'r') as csvfile:
             if variety_id is None:
                 variety_id = 1;
             values = [row[0],row[1],row[2],row[3], variety_id, winery_id, row[5]]
-            cursor.execute('INSERT INTO winereviews_wine(id, name, price, description, variety_id , winery_id, varietal, created_at, updated_at ) VALmydb.commit()UES(%s,%s,%s,%s,%s,%s,%s, NOW(),NOW())', values)
+            cursor.execute('INSERT INTO winereviews_wine(id, name, price, description, variety_id , winery_id, varietal, created_at, updated_at ) VALUES(%s,%s,%s,%s,%s,%s,%s, NOW(),NOW())', values)
             if row[0] % 1000 == 0 or int(row[0]) == 129970:
                 mydb.commit()
         except:
