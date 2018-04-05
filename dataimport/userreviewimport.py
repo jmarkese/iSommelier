@@ -18,10 +18,22 @@ cursor.execute('SET character_set_connection=utf8;')
 with open('winemag-data-130k-v2-clean.csv', 'r') as csvfile:
     reader = csv.reader(csvfile, delimiter=',')
     for row in reader:
-        cursor.execute("SELECT id FROM auth_user WHERE username=%s;", [row[10]])
-        user_id = cursor.fetchone()
-        values = [row[2], user_id, 2, row[4]]
-        cursor.execute('INSERT INTO winereviews_review(comment, user_id, wine_id, rating, created_at, updated_at ) VALUES(%s,%s,%s,%s,NOW(),NOW())', values)
+        user_name = row[10]
+        description = row[11]
+        rating = row[4]
+        comment = row[2]
 
-mydb.commit()
+        cursor.execute("SELECT id FROM auth_user WHERE username=%s;", [user_name])
+        user_id = cursor.fetchone()
+        
+        cursor.execute("SELECT id FROM winereviews_wine WHERE description=%s;", [description])
+        wine_id = cursor.fetchone()
+
+        if wine_id is None:
+            wine_id = 1
+
+        values = [comment, user_id, wine_id, rating]
+        cursor.execute('INSERT INTO winereviews_review(comment, user_id, wine_id, rating, created_at, updated_at ) VALUES(%s,%s,%s,%s,NOW(),NOW())', values)
+        mydb.commit()
+
 cursor.close()
