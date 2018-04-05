@@ -1,0 +1,28 @@
+{% extends "winereviews/base.html" %}
+{% load static %}
+{% block content %}
+      <div id='side-bar-1'>
+        <h2>iSommelier</h2>
+        <p>Looking for the perfect wine for your Friday night date? Well, iSommelier is the place to go to select the perfect pairing for your Foie Gras. Who needs the highbrow wine experts, when iSommelier is faster and less intimidating?</p> 
+        <p>Many of the existing wine review websites are in a blog or forum format or require a subscription to browse the content, and we are looking to provide an interface that allows more intuitive and robust searching than what a blog/forum platform provides while being openly available the public.</p>
+      
+        <table id='icon' style="width:100%; margin-top:60px;">
+          <tr style='text-align: center'>
+            <td><img src="static/images/consultancy-icon.png" style="max-height:100%;max-width:100%"></td>
+            <td><img src="{% static 'wine-icon.png' %}" style="max-height:100%;max-width:100%"></td>
+          </tr>
+          <tr style='text-align: center'>
+            <td><h4>CONSULTANCY</h4></td>
+            <td><h4>RATINGS</h4></td>
+          </tr>
+          <tr style='text-align: center'>
+            <td style='width:50%'><div style='margin-left:20%;margin-right:20%'>The iSommelier is the perfect platform for wine enthusiasts to read about and discover new wines without the pressure of consulting with experts.</div>
+            </td>
+            <td style='width:50%'><div style='margin-left:20%;margin-right:20%'>The iSommelier also provides a platform for the public to share their own experiences and reviews and keep track of their favorites</div>
+            </td>
+          </tr>          
+        </table>
+      </div> 
+{% endblock %}
+
+

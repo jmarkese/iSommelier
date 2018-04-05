@@ -1,0 +1,95 @@
+{% load i18n static %}<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="//d3js.org/d3.v4.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+
+      body {
+          font-family: "Lato", sans-serif;
+      }
+
+      .sidenav {
+          height: 100%;
+          width: 160px;
+          position: fixed;
+          z-index: 1;
+          top: 0;
+          left: 0;
+          background-color: #111;
+          overflow-x: hidden;
+          padding-top: 20px;
+      }
+
+      .sidenav a {
+          padding: 6px 8px 6px 16px;
+          text-decoration: none;
+          font-size: 20px;
+          color: #818181;
+          display: block;
+      }
+
+      .sidenav a:hover {
+          color: #f1f1f1;
+      }
+
+      .main {
+          margin-left: 160px; /* Same as the width of the sidenav */
+          font-size: 15px; /* Increased text to enable scrolling */
+          padding: 0px 10px;
+      }
+
+      @media screen and (max-height: 450px) {
+          .sidenav {padding-top: 15px;}
+          .sidenav a {font-size: 18px;}
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <div class="sidenav">
+      <a href="{% url 'index' %}">About Us</a>
+      <a href="{% url 'consultancy' %}">Consultancy</a>
+      <a href="#side-bar-3">Ratings</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="main">
+      <div> <!-- Slide Show -->
+        <section>
+          <img class="mySlides" src="{% static "images/winery3.jpg" %}" style="max-height:100%;max-width:100%">
+          <img class="mySlides" src="{% static "images/winery2.jpg" %}" style="max-height:100%;max-width:100%">
+          <img class="mySlides" src="{% static "images/winery1.png" %}" style="max-height:100%;max-width:100%">
+        </section>
+      </div>
+      
+      
+      {% block content %}
+      {% endblock %}
+
+
+    </div>
+      
+    <script>
+      // Automatic Slideshow - change image every 3 seconds
+      var myIndex = 0;
+      carousel();
+      function carousel() {
+          var i;
+          var x = document.getElementsByClassName("mySlides");
+          for (i = 0; i < x.length; i++) {
+             x[i].style.display = "none";
+          }
+          myIndex++;
+          if (myIndex > x.length) {myIndex = 1}
+          x[myIndex-1].style.display = "block";
+          setTimeout(carousel, 3000);
+      }
+
+    </script>
+    
+  </body>
+</html>
