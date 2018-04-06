@@ -25,7 +25,7 @@ var pack1 = d3.pack()
     .size([width, height])
     .padding(1.5); 
 
-d3.csv("https://isommelier-jmarkese.c9users.io:8080/winereviews/wine_variety_stats/", function(d) {
+d3.csv("../../winereviews/wine_variety_stats/", function(d) {
   d.value = +d.value;
   if (d.value) return d;
 }, function(error, classes) {
