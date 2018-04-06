@@ -1,7 +1,7 @@
 isommelier/env
 isommelier/isommelier.sock
 isommelier/my.cnf
-isommelier/static
+# isommelier/static
 
 .mysql_history
 .viminfo
