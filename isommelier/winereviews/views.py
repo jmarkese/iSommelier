@@ -30,10 +30,19 @@ def pick_a_wine(request):
 
 def wine_variety_stats(request):
     response = HttpResponse(content_type='text/csv')
-    varieties = Variety.objects.annotate(Count('wine'))
+    sql = '''
+        SELECT A.id, count(C.id) review_count
+        FROM winereviews_variety A
+        JOIN winereviews_wine B ON B.variety_id = A.id
+        JOIN winereviews_review C ON C.wine_id = A.id
+        GROUP BY A.id
+        ORDER BY review_count DESC
+        LIMIT 100;
+    '''
+    varieties = Variety.objects.raw(sql)
     writer = csv.writer(response)
     writer.writerow(['id', 'value'])
     for v in varieties:
-        writer.writerow([v.name, v.wine__count])
+        writer.writerow([v.name, v.review_count])
     return response
     
