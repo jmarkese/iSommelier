@@ -77,8 +77,8 @@ def wine_variety_stats(request):
 
 
 
-def winereviews_review(request):
-    template = loader.get_template('winereviews/review.html')
+def review_create(request):
+    template = loader.get_template('winereviews/review_create.html')
     context = {
         'a_var': 0,
     }
