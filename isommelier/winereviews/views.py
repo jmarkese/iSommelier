@@ -34,7 +34,7 @@ def wine_variety_stats(request):
         SELECT A.id, count(C.id) review_count
         FROM winereviews_variety A
         JOIN winereviews_wine B ON B.variety_id = A.id
-        JOIN winereviews_review C ON C.wine_id = A.id
+        JOIN winereviews_review C ON C.wine_id = B.id
         GROUP BY A.id
         ORDER BY review_count DESC
         LIMIT 100;
