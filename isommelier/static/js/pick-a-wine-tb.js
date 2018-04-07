@@ -1,46 +1,46 @@
-
-d3.csv("data/pick-a-wine.csv", function(error, myData) {
+d3.csv("../../winereviews/variety_options/", function(error, myData) {
     if (error) {
         console.log("Error");
     }
 
-    //populate dropdown options with input data
-	var dropdownOptions = [];
-	myData.forEach(function(d, i){
-		if ( dropdownOptions.indexOf(d.designation) == -1) {
-			dropdownOptions.push(d.designation);
-		}; 
-	}); 
+    // populate dropdown options with input data
 	var option = '';
-	for (var i=0;i<dropdownOptions.length;i++){
-	   option += '<option value="'+ dropdownOptions[i] + '">' + dropdownOptions[i] + '</option>';
-	}; 
+	var dropdownOptions = [];
+	console.log(myData);
+	myData.forEach(function(d, i){
+ 	   option += '<option value="'+ d.id + '">' + d.name + '</option>';
+	}); 
+
 	$('#pickawine-select option').empty(); //clear old options
 	$('#pickawine-select').append(option); //add new options
-
 
     //listen to dropdown
 	d3.select('#pickawine-select').on("change", function() {
 
 		var dropdown = document.getElementById("pickawine-select");
-		var designation_sel = dropdown.options[dropdown.selectedIndex].value;
-
-	    var myArray = [];
-	    myData.forEach(function(d, i){
-	    	//d.points = +d.points;
-	    	//d.price = +d.price;
-	        // Add a new array with the values of each:
-	        if (d['designation'] == designation_sel) {
-	        	myArray.push([d.designation, d.variety, d.winery, d.country, d.description]);
-	    	};
-	    });
-	    //generate table
-	    tabulate(myArray, ["designation", "variety", "winery", "country", "description"],'#pickawine-result')
+		var varietyId = dropdown.options[dropdown.selectedIndex].value;
+	    getVarietyReviewData(varietyId);
 
 	});
 
-
 });
+
+function getVarietyReviewData(varietyId) {
+    var varietyReviewEndpoint = "../../winereviews/variety_reviews/" + varietyId;
+    d3.csv(varietyReviewEndpoint, function(d) {
+        console.log(d);
+        return d;
+    }, function(data) {
+        
+	    var reviewArray = [];
+	    data.forEach(function(d, i){
+        	reviewArray.push([d.designation, d.variety, d.winery, d.country, d.description]);
+	    });
+
+	    //generate table
+	    tabulate(reviewArray, ["designation", "variety", "winery", "country", "description"],'#pickawine-result')
+    });
+}
 
 function tabulate(data, columns, id) {
     //newch remove existing table
