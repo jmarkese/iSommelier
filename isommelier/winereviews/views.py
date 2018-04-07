@@ -21,9 +21,8 @@ def index(request):
 
 def consultancy(request):
     template = loader.get_template('winereviews/consultancy.html')
-    varieties = Variety.objects.all().order_by('name')
     context = {
-        'varieties': varieties,
+        'a_var': 0,
     }
     return HttpResponse(template.render(context, request))
     
