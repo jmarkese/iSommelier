@@ -32,11 +32,11 @@ function getVarietyReviewData(varietyId) {
         
 	    var reviewArray = [];
 	    data.forEach(function(d, i){
-        	reviewArray.push([d.designation, d.variety, d.winery, d.country, d.description]);
+        	reviewArray.push([d.taster, d.points, d.designation, d.variety, d.winery, d.country, d.description]);
 	    });
 
 	    //generate table
-	    tabulate(reviewArray, ["designation", "variety", "winery", "country", "description"],'#pickawine-result')
+	    tabulate(reviewArray, ["taster", "rating", "designation", "variety", "winery", "country", "description"],'#pickawine-result')
     });
 }
 
