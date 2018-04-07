@@ -1,0 +1,3 @@
+CREATE INDEX winery_id_fk ON winereviews_wine (winery_id);
+CREATE INDEX variety_id_fk ON winereviews_wine (variety_id);
+CREATE INDEX wine_id_fk ON winereviews_review (wine_id);
