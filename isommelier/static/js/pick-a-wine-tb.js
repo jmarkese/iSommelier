@@ -6,7 +6,6 @@ d3.csv("../../winereviews/variety_options/", function(error, myData) {
     // populate dropdown options with input data
 	var option = '';
 	var dropdownOptions = [];
-	console.log(myData);
 	myData.forEach(function(d, i){
  	   option += '<option value="'+ d.id + '">' + d.name + '</option>';
 	}); 
@@ -28,7 +27,6 @@ d3.csv("../../winereviews/variety_options/", function(error, myData) {
 function getVarietyReviewData(varietyId) {
     var varietyReviewEndpoint = "../../winereviews/variety_reviews/" + varietyId;
     d3.csv(varietyReviewEndpoint, function(d) {
-        console.log(d);
         return d;
     }, function(data) {
         
