@@ -9,9 +9,9 @@
 
 Team Members
 ------
-John Markese  
-Rebecca “Rui” Lu 
-Sunitha Vijayanarayan 
+John Markese   
+Sunitha Vijayanarayan  
+Rebecca “Rui” Lu     
 
 ### About iSommelier:
 Using a wine review dataset retrieved from Kaggle our project is to create a user interface that that allows searching and filtering through a 130K record dataset of wine attributes, descriptions, and reviews. The engine would serve as a resource for wine enthusiasts to find detailed information about wines from across the globe and also contribute their own wines and reviews. 
@@ -34,4 +34,4 @@ Basic Functions:
 Advanced Functions:
 -	Natural Language Processing (NLP)
 -	Data Visualization
-Advanced Techniques: TBD
+-    Advanced Techniques: TBD
