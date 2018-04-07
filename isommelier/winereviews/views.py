@@ -5,6 +5,9 @@ from django.template import loader
 from django.http import HttpResponse
 from django.db.models import Count
 from .models import Variety
+from .models import Review
+from .models import Wine
+
 
 
 def index(request):
@@ -14,19 +17,46 @@ def index(request):
     }
     return HttpResponse(template.render(context, request))  
 
+
+
 def consultancy(request):
     template = loader.get_template('winereviews/consultancy.html')
+    varieties = Variety.objects.all().order_by('name')
     context = {
-        'a_var': 0,
+        'varieties': varieties,
     }
-    return HttpResponse(template.render(context, request))  
+    return HttpResponse(template.render(context, request))
+    
 
-def pick_a_wine(request):
+
+def variety_options(request):
     response = HttpResponse(content_type='text/csv')
+    varieties = Variety.objects.all()
     writer = csv.writer(response)
-    writer.writerow(['First row', 'Foo', 'Bar', 'Baz'])
-    writer.writerow(['Second row', 'A', 'B', 'C', '"Testing"', "Here's a quote"])
-    return response    
+    writer.writerow(['id','name'])
+    for v in varieties:
+        writer.writerow([v.id, v.name])
+    return response
+
+
+
+def variety_reviews(request, variety_id):
+    response = HttpResponse(content_type='text/csv')
+    sql = '''
+        SELECT A.*
+        FROM winereviews_review A
+        JOIN winereviews_wine B ON A.wine_id = B.id
+        JOIN winereviews_variety C ON B.variety_id = C.id
+        AND C.id = %s
+    '''
+    reviews = Review.objects.raw(sql, [variety_id])
+    writer = csv.writer(response)
+    writer.writerow(['country','description','designation','points','price','taster_name','variety','winery'])
+    for r in reviews:
+        writer.writerow([r.wine.winery.country, r.comment, r.wine.name, r.rating, r.wine.price, r.user.username, r.wine.variety.name, r.wine.winery.name])
+    return response
+
+
 
 def wine_variety_stats(request):
     response = HttpResponse(content_type='text/csv')
@@ -45,4 +75,14 @@ def wine_variety_stats(request):
     for v in varieties:
         writer.writerow([v.name, v.review_count])
     return response
+
+
+
+def winereviews_review(request):
+    template = loader.get_template('winereviews/review.html')
+    context = {
+        'a_var': 0,
+    }
+    return HttpResponse(template.render(context, request))
+    
     
