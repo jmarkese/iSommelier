@@ -30,7 +30,7 @@ def consultancy(request):
 
 def variety_options(request):
     response = HttpResponse(content_type='text/csv')
-    varieties = Variety.objects.all()
+    varieties = Variety.objects.all().order_by("name")
     writer = csv.writer(response)
     writer.writerow(['id','name'])
     for v in varieties:
@@ -50,7 +50,7 @@ def variety_reviews(request, variety_id):
     '''
     reviews = Review.objects.raw(sql, [variety_id])
     writer = csv.writer(response)
-    writer.writerow(['country','description','designation','points','price','taster_name','variety','winery'])
+    writer.writerow(['country','description','designation','points','price','taster','variety','winery'])
     for r in reviews:
         writer.writerow([r.wine.winery.country, r.comment, r.wine.name, r.rating, r.wine.price, r.user.username, r.wine.variety.name, r.wine.winery.name])
     return response
