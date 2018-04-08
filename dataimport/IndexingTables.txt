@@ -1,3 +1,5 @@
 CREATE INDEX winery_id_fk ON winereviews_wine (winery_id);
 CREATE INDEX variety_id_fk ON winereviews_wine (variety_id);
 CREATE INDEX wine_id_fk ON winereviews_review (wine_id);
+
+CREATE INDEX idx_winery__county__province__region__name ON winereviews_winery (country, province, region, name);

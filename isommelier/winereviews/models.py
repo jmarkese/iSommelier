@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.urls import reverse
 
 # Create your models here.
 
@@ -10,6 +11,8 @@ class Variety(models.Model):
     name = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    def __str__(self):
+        return '%s' % (self.name)
 
 class Winery(models.Model):
     class Meta:
@@ -20,6 +23,8 @@ class Winery(models.Model):
     country = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    def __str__(self):
+        return '%s' % (self.name)
     
 class Wine(models.Model):
     name = models.CharField(max_length=255)
@@ -30,6 +35,12 @@ class Wine(models.Model):
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return '%s' % (self.name)
+    def get_absolute_url(self):
+        return reverse('wine_detail', kwargs={'pk': self.pk})
+
 
 class Review(models.Model):
     rating = models.PositiveSmallIntegerField(
@@ -45,4 +56,7 @@ class Review(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    
+    def get_absolute_url(self):
+        return reverse('review_detail', kwargs={'pk': self.pk})
 

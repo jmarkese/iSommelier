@@ -1,0 +1,43 @@
+{% extends "winereviews/base.html" %}
+{% load static %}
+{% block content %}
+
+    <h2>All Wines</h2>
+    <a href="/winereviews/wine/add">New Wine</a>
+
+    <table id="cars">
+        {% for wine in object_list %}
+            <tr>
+                <td>{{ wine.id }}</td>
+                <td>{{ wine.variety }}</td>
+                <td>{{ wine.name }}</td>
+                <td>{{ wine.winery }}</td>
+                <td>{{ wine.price }}</td>
+                <td>{{ wine.description }}</td>
+                <td>{{ wine.created_at }}</td>
+                <td><a href="/winereviews/wine/{{ wine.id }}/detail" class="see_detail">show</a></td>
+                <td><a href="/winereviews/wine/{{ wine.id }}/" class="see_detail">edit</a></td>
+                <td><a href="/winereviews/wine/{{ wine.id }}/delete" class="see_detail">delete</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    {# .... **Now the pagination section** .... #}
+    {% if is_paginated %}
+        <div class="pagination">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+        </div>
+    {% endif %}
+
+{% endblock %}
+
