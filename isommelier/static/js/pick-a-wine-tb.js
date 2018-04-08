@@ -32,7 +32,7 @@ function getVarietyReviewData(varietyId) {
         
 	    var reviewArray = [];
 	    data.forEach(function(d, i){
-        	reviewArray.push([d.taster, d.points, d.designation, d.variety, d.winery, d.country, d.description]);
+        	reviewArray.push([d.taster, d.points, d.designation, d.variety, d.winery, d.country, d.description, d.id]);
 	    });
 
 	    //generate table
@@ -40,10 +40,21 @@ function getVarietyReviewData(varietyId) {
     });
 }
 
+function deleteReview(reviewId) {
+    alert(reviewId);
+    var reviewDeleteResponse = "../../winereviews/review_delete/" + reviewId;
+    return reviewDeleteResponse;
+}
+
+function likeReview(reviewId) {
+    alert(reviewId);
+    var reviewLikeResponse = "../../winereviews/review_like/" + reviewId;
+    return reviewLikeResponse;
+}
+
 function tabulate(data, columns, id) {
     //newch remove existing table
     d3.select(id).select('table').remove();
-
     var table = d3.select(id).append("table"),
         thead = table.append("thead"),
         tbody = table.append("tbody");
@@ -74,6 +85,19 @@ function tabulate(data, columns, id) {
         .enter()
         .append("td")
         .text(function(d) { return d.value; });
+
+    rows.append("td")
+            .attr("class", "likebutton")
+            .append("img")
+            .attr("src" ,"../../static/images/like.png")
+            .attr("height","30px")
+            .on("click", function(d){  alert(d[7]); });
+
+    rows.append("td")
+            .attr("class", "button")
+            .append("button")
+            .text(function(d){return "Delete"})
+            .on("click", function(d){alert(d[7]); deleteReview(d[7]); });
     return table;
 };
 
