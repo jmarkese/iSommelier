@@ -12,6 +12,10 @@ urlpatterns = [
     path('variety_reviews/<int:variety_id>', views.variety_reviews, name='variety_reviews'),
 
     # Reviews CRUD
+    path('review_create/', views.review_create, name='review_create'),
+    path('review_delete/<int:review_id>', views.review_delete, name='review_delete'),
+    path('review_like/<int:review_id>', views.review_like, name='review_like'),
+
     path('reviews/', ReviewList.as_view()),
     path('review/add/', ReviewCreate.as_view(), name='review_add'),
     path('review/<int:pk>/', ReviewUpdate.as_view(), name='review_update'),

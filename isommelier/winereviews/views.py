@@ -54,12 +54,22 @@ def variety_reviews(request, variety_id):
     '''
     reviews = Review.objects.raw(sql, [variety_id])
     writer = csv.writer(response)
-    writer.writerow(['country','description','designation','points','price','taster','variety','winery'])
+    writer.writerow(['country','description','designation','points','price','taster','variety','winery', 'id'])
     for r in reviews:
-        writer.writerow([r.wine.winery.country, r.comment, r.wine.name, r.rating, r.wine.price, r.user.username, r.wine.variety.name, r.wine.winery.name])
+        writer.writerow([r.wine.winery.country, r.comment, r.wine.name, r.rating, r.wine.price, r.user.username, r.wine.variety.name, r.wine.winery.name, r.id])
     return response
-    
 
+
+def review_delete(request, review_id):
+    Review.objects.filter(id =review_id).delete()
+    return HttpResponse('Success',content_type='text/plain')
+
+
+def review_like(request, review_id):
+    likedReview = Review.objects.get(id =review_id)
+    likedReview.likes = likedReview.likes + 1
+    likedReview.save()
+    return HttpResponse(likedReview.likes,content_type='text/plain')
 
 def wine_variety_stats(request):
     response = HttpResponse(content_type='text/csv')
