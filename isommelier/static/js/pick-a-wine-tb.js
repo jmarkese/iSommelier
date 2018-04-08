@@ -41,15 +41,19 @@ function getVarietyReviewData(varietyId) {
 }
 
 function deleteReview(reviewId) {
-    alert(reviewId);
+    console.log(reviewId);
     var reviewDeleteResponse = "../../winereviews/review_delete/" + reviewId;
-    return reviewDeleteResponse;
+    d3.request(reviewDeleteResponse)
+        .get(function() { console.log("GET"); })
+        .response(function(xhr) { console.log(xhr.responseText); });
 }
 
 function likeReview(reviewId) {
-    alert(reviewId);
+    console.log(reviewId);
     var reviewLikeResponse = "../../winereviews/review_like/" + reviewId;
-    return reviewLikeResponse;
+    d3.request(reviewLikeResponse)
+        .get(function() { console.log("GET"); })
+        .response(function(xhr) { console.log(xhr.responseText); });
 }
 
 function tabulate(data, columns, id) {
@@ -91,13 +95,13 @@ function tabulate(data, columns, id) {
             .append("img")
             .attr("src" ,"../../static/images/like.png")
             .attr("height","30px")
-            .on("click", function(d){  alert(d[7]); });
+            .on("click", function(d){ likeReview(d[7]); });
 
     rows.append("td")
             .attr("class", "button")
             .append("button")
             .text(function(d){return "Delete"})
-            .on("click", function(d){alert(d[7]); deleteReview(d[7]); });
+            .on("click", function(d){ deleteReview(d[7]); });
     return table;
 };
 
