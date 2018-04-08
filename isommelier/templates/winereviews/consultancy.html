@@ -1,19 +1,20 @@
-{% extends "winereviews/base.html" %}
+{% extends "winereviews/consultancybase.html" %}
 {% load static %}
 {% block content %}
 
       <div id='side-bar-2'>
-        <h2>Consultancy</h2>
+        <h2>Top Wines by Varietal</h2>
 
         <h4>Overview of our data assets</h4>
         <p style='font-style: italic;'>We have over 130,000 records in our database. Hover over each bubble to see the number of reviews we have for each wine variety.</p>
-        <!--Bubble Chart-->
+         <p style='font-style: italic;'>You can also choose a varietal and take a look at user reviews..</p>
+          <!--Bubble Chart-->
         <div id='bubble1' style='margin:auto;width:60%'>
           <!--svg width="550" height="550" font-family="sans-serif" font-size="10" text-anchor="middle"></svg-->
           <script src="{% static "js/wine-variety-bubble.js" %}"></script>
         </div>
 
-        <h4 style='margin-top:60px'>Pick a wine designation to look at the reviews</h4>
+        <h4 style='margin-top:60px'>Pick a wine variety to look at the reviews</h4>
         
         <div>
           <form id="pickawine-form">
