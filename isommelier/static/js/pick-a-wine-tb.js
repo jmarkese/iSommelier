@@ -101,7 +101,7 @@ function tabulate(data, columns, id) {
             .attr("class", "button")
             .append("button")
             .text(function(d){return "Delete"})
-            .on("click", function(d){ deleteReview(d[7]); });
+            .on("click", function(d){ $(this).closest('tr').remove(); deleteReview(d[7]); });
     return table;
 };
 
