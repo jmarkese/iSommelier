@@ -54,9 +54,9 @@ def variety_reviews(request, variety_id):
     '''
     reviews = Review.objects.raw(sql, [variety_id])
     writer = csv.writer(response)
-    writer.writerow(['country','description','designation','points','price','taster','variety','winery', 'id'])
+    writer.writerow(['country','description','designation','points','price','taster','variety','winery', 'id', 'likes'])
     for r in reviews:
-        writer.writerow([r.wine.winery.country, r.comment, r.wine.name, r.rating, r.wine.price, r.user.username, r.wine.variety.name, r.wine.winery.name, r.id])
+        writer.writerow([r.wine.winery.country, r.comment, r.wine.name, r.rating, r.wine.price, r.user.username, r.wine.variety.name, r.wine.winery.name, r.id, r.likes])
     return response
 
 
