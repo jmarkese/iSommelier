@@ -1,0 +1,27 @@
+{% extends "winereviews/base.html" %}
+{% load static %}
+{% block content %}
+
+      <div id='side-bar-2'>
+
+        <h2>Wine Review</h2>
+        
+        <p><strong>comment: </strong><br />
+        {{ review.comment }}</p>
+
+        <p><strong>rating: </strong><br />
+        {{ review.rating }}</p>
+
+        <p><strong>wine: </strong><br />
+        {{ review.wine }}</p>
+
+        <p><strong>user: </strong><br />
+        {{ review.user }}</p>
+        
+        <p><strong>created at: </strong><br />
+        {{ review.created_at }}</p>
+
+      </div>
+
+{% endblock %}
+

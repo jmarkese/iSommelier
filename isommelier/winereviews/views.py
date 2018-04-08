@@ -1,13 +1,17 @@
 
 import csv
-from django.shortcuts import render
+from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
+from django.views.generic import ListView
+from django.urls import reverse_lazy, reverse
+from django.shortcuts import render, get_object_or_404
 from django.template import loader
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.db.models import Count
-from .models import Variety
-from .models import Review
-from .models import Wine
-
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from django.db import connection
+from .models import Variety, Review, Wine
+from .forms import WineReviewCreateForm
 
 
 def index(request):
@@ -55,9 +59,11 @@ def variety_reviews(request, variety_id):
         writer.writerow([r.wine.winery.country, r.comment, r.wine.name, r.rating, r.wine.price, r.user.username, r.wine.variety.name, r.wine.winery.name, r.id])
     return response
 
+
 def review_delete(request, review_id):
     Review.objects.filter(id =review_id).delete()
     return HttpResponse('Success',content_type='text/plain')
+
 
 def review_like(request, review_id):
     likedReview = Review.objects.get(id =review_id)
@@ -85,11 +91,81 @@ def wine_variety_stats(request):
 
 
 
-def review_create(request):
+# Review CRUD
+@method_decorator(login_required, name='dispatch')
+class ReviewCreate(CreateView):
+    model = Review
+    fields = ['comment', 'user', 'rating']
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        return super().form_valid(form)
+
+@method_decorator(login_required, name='dispatch')
+class ReviewUpdate(UpdateView):
+    model = Review
+    fields = ['comment', 'user', 'rating']
+
+@method_decorator(login_required, name='dispatch')
+class ReviewDelete(DeleteView):
+    model = Review
+    success_url = reverse_lazy('review-list')
+
+class ReviewList(ListView):
+    model = Review 
+    paginate_by = 100
+
+def review_detail(request, pk):
     template = loader.get_template('winereviews/review_create.html')
+    review = Review.objects.get(id=pk)
     context = {
-        'a_var': 0,
+        'review': review,
     }
     return HttpResponse(template.render(context, request))
-    
-    
+
+
+# Wine CRUD
+@method_decorator(login_required, name='dispatch')
+class WineCreate(CreateView):
+    model = Wine
+    fields = ['name', 'variety', 'winery', 'price', 'description']
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        return super().form_valid(form)
+
+@method_decorator(login_required, name='dispatch')
+class WineUpdate(UpdateView):
+    model = Wine
+    fields = ['name', 'variety', 'winery', 'price', 'description']
+
+@method_decorator(login_required, name='dispatch')
+class WineDelete(DeleteView):
+    model = Wine
+    success_url = reverse_lazy('wine-list')
+
+class WineList(ListView):
+    model = Wine 
+    paginate_by = 100
+
+def wine_detail(request, pk):
+    template = loader.get_template('winereviews/wine_detail.html')
+    wine = Wine.objects.get(id=pk)
+    context = {
+        'wine': wine,
+    }
+    return HttpResponse(template.render(context, request))
+
+def wine_review_create(request, pk):
+    wine = get_object_or_404(Wine, id=pk)
+    if request.method == 'POST':
+        form = WineReviewCreateForm(request.POST)
+        with connection.cursor() as cursor:
+            sql = '''
+            INSERT INTO winereviews_review 
+            (rating, comment, wine_id, user_id)
+            VALUES (%s, %s, %s, %s)
+            '''
+            cursor.execute(sql, [request.POST['rating'], request.POST['comment'], request.POST['wine_id'], request.POST['user_id']])
+        return HttpResponseRedirect(reverse('wine_list'))
+    else:
+        form = WineReviewCreateForm(initial={'wine_id': wine.id,})
+    return render(request, 'winereviews/wine_review_create.html', {'form': form})
