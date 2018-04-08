@@ -46,6 +46,12 @@
           .sidenav {padding-top: 15px;}
           .sidenav a {font-size: 18px;}
       }
+      .likebutton{
+            cursor:pointer;
+            border: none;
+            height: -moz-available;
+            width: -moz-available;
+            }
     </style>
   </head>
 
@@ -60,9 +66,6 @@
     <div class="main">
       <div> <!-- Slide Show -->
         <section>
-          <img class="mySlides" src="{% static "images/winery3.jpg" %}" style="max-height:100%;max-width:100%">
-          <img class="mySlides" src="{% static "images/winery2.jpg" %}" style="max-height:100%;max-width:100%">
-          <img class="mySlides" src="{% static "images/winery1.png" %}" style="max-height:100%;max-width:100%">
         </section>
       </div>
       
@@ -73,23 +76,7 @@
 
     </div>
       
-    <script>
-      // Automatic Slideshow - change image every 3 seconds
-      var myIndex = 0;
-      carousel();
-      function carousel() {
-          var i;
-          var x = document.getElementsByClassName("mySlides");
-          for (i = 0; i < x.length; i++) {
-             x[i].style.display = "none";
-          }
-          myIndex++;
-          if (myIndex > x.length) {myIndex = 1}
-          x[myIndex-1].style.display = "block";
-          setTimeout(carousel, 3000);
-      }
 
-    </script>
     
   </body>
 </html>
