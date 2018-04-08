@@ -115,7 +115,7 @@ class ReviewList(ListView):
     paginate_by = 100
 
 def review_detail(request, pk):
-    template = loader.get_template('winereviews/review_create.html')
+    template = loader.get_template('winereviews/review_detail.html')
     review = Review.objects.get(id=pk)
     context = {
         'review': review,
