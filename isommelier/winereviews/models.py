@@ -37,7 +37,7 @@ class Wine(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return '%s' % (self.name)
+        return '%s' % (self.description)
     def get_absolute_url(self):
         return reverse('wine_detail', kwargs={'pk': self.pk})
 
