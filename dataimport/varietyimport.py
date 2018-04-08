@@ -10,11 +10,11 @@ mydb = MySQLdb.connect(host='localhost',
     db='isommelier')
 cursor = mydb.cursor()
 
-with open('Variety.csv', 'r') as csvfile:
+with open('Variety_cleaned.csv', 'r') as csvfile:
     reader = csv.reader(csvfile, delimiter=',')
     for row in reader:
-        values = [row[0], row[1].encode('utf-8')]
-        cursor.execute('INSERT INTO winereviews_variety(id, name, created_at, updated_at) VALUES(%s,%s,NOW(),NOW())', values)
+        values = [row[1].encode('utf-8')]
+        cursor.execute('INSERT INTO winereviews_variety(name, created_at, updated_at) VALUES(%s,NOW(),NOW())', values)
         mydb.commit()
 
 cursor.close()

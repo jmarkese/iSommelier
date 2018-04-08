@@ -47,7 +47,7 @@ with open('winemag-data-130k-v2-clean.csv', 'r') as csvfile:
                 variety_id = cursor.fetchone()
         
                 if variety_id is None:
-                    variety_id = 642
+                    variety_id = 1
         
                 values = [wine_name, price, description, variety_id, winery_id, ""]
                 cursor.execute('INSERT INTO winereviews_wine(name, price, description, variety_id , winery_id, varietal, created_at, updated_at ) VALUES(%s,%s,%s,%s,%s,%s,NOW(),NOW())', values)

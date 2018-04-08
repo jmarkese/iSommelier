@@ -1,0 +1,33 @@
+{% extends "winereviews/base.html" %}
+{% load static %}
+{% block content %}
+
+      <div id='side-bar-2'>
+
+        <h2>Wine</h2>
+        
+        <p><strong>variety: </strong><br />
+        {{ wine.variety }}</p>
+
+        <p><strong>winery: </strong><br />
+        {{ wine.winery }}</p>
+
+        <p><strong>description: </strong><br />
+        {{ wine.description }}</p>
+
+        <p><strong>name: </strong><br />
+        {{ wine.name }}</p>
+
+        <p><strong>price: </strong><br />
+        {{ wine.price }}</p>
+        
+        <p><strong>created at: </strong><br />
+        {{ wine.created_at }}</p>
+        
+        <a href="/winereviews/wine/{{ wine.id }}/review">Review this wine</a>
+
+      </div>
+
+{% endblock %}
+
+

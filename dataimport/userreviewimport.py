@@ -2,8 +2,8 @@ import csv
 import MySQLdb
 import getpass
 
-user_in = input("Username:")
-passwd_in = getpass.getpass('Password:')
+user_in = 'keytotalers' #input("Username:")
+passwd_in = 'i50mmelier' #getpass.getpass('Password:')
 mydb = MySQLdb.connect(host='localhost',
     user=user_in,
     passwd=passwd_in,
@@ -17,7 +17,13 @@ cursor.execute('SET character_set_connection=utf8;')
 
 with open('winemag-data-130k-v2-clean.csv', 'r') as csvfile:
     reader = csv.reader(csvfile, delimiter=',')
+    i=0
     for row in reader:
+
+        if i is 0:
+            i += 1
+            continue
+
         user_name = row[10]
         description = row[11]
         rating = row[4]
@@ -25,6 +31,9 @@ with open('winemag-data-130k-v2-clean.csv', 'r') as csvfile:
 
         cursor.execute("SELECT id FROM auth_user WHERE username=%s;", [user_name])
         user_id = cursor.fetchone()
+
+        # if user_id is None:
+        #     user_id = 1
         
         cursor.execute("SELECT id FROM winereviews_wine WHERE description=%s;", [description])
         wine_id = cursor.fetchone()
@@ -33,7 +42,9 @@ with open('winemag-data-130k-v2-clean.csv', 'r') as csvfile:
             wine_id = 1
 
         values = [comment, user_id, wine_id, rating]
+        #print(values)
         cursor.execute('INSERT INTO winereviews_review(comment, user_id, wine_id, rating, created_at, updated_at ) VALUES(%s,%s,%s,%s,NOW(),NOW())', values)
         mydb.commit()
+        
 
 cursor.close()
