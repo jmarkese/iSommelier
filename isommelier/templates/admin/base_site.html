@@ -6,7 +6,8 @@
 {% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "/admin/css/admin-extra.css" %}" />{% endblock %}
 
 {% block branding %}
-<h1 ><a href="{% url 'admin:index' %}">iSommelier Administration</a></h1>
+<h1 ><a href="/">iSommelier Administration</a></h1>
+<!--<h1 ><a href="{% url 'admin:index' %}">iSommelier Administration</a></h1>-->
 {% endblock %}
 
 {% block nav-global %}{% endblock %}
