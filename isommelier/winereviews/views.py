@@ -73,7 +73,7 @@ def review_create(request):
             cursor.execute(sql, [request.POST['rating'], request.POST['comment'], request.POST['wine_id'], request.POST['user_id']])
         return HttpResponseRedirect(reverse('wine_list'))
     else:
-        form = WineReviewCreateForm()
+        form = WineReviewCreateForm(initial={'user_id': request.user.id,})
         return render(request, 'winereviews/review_form.html', {'form': form})
 
 def review_delete(request, review_id):
@@ -176,7 +176,7 @@ def wine_review_create(request, pk):
             cursor.execute(sql, [request.POST['rating'], request.POST['comment'], request.POST['wine_id'], request.POST['user_id']])
         return HttpResponseRedirect(reverse('wine_list'))
     else:
-        form = WineReviewCreateForm(initial={'wine_id': wine.id,})
+        form = WineReviewCreateForm(initial={'wine_id': wine.id,'user_id': request.user.id})
     return render(request, 'winereviews/wine_review_create.html', {'form': form})
 
 def wine_type_ahead(request):
