@@ -1,5 +1,7 @@
 
 import csv
+import json
+
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.views.generic import ListView
 from django.urls import reverse_lazy, reverse
@@ -64,6 +66,20 @@ def variety_reviews(request, variety_id):
         writer.writerow([r.wine.winery.country, r.comment, r.wine.name, r.rating, r.wine.price, r.user.username, r.wine.variety.name, r.wine.winery.name, r.id, r.likes, r.flag])
     return response
 
+def review_create(request):
+    if request.method == 'POST':
+        form = WineReviewCreateForm(request.POST)
+        with connection.cursor() as cursor:
+            sql = '''
+            INSERT INTO winereviews_review 
+            (rating, comment, wine_id, user_id)
+            VALUES (%s, %s, %s, %s)
+            '''
+            cursor.execute(sql, [request.POST['rating'], request.POST['comment'], request.POST['wine_id'], request.POST['user_id']])
+        return HttpResponseRedirect(reverse('wine_list'))
+    else:
+        form = WineReviewCreateForm()
+        return render(request, 'winereviews/review_form.html', {'form': form})
 
 def review_delete(request, review_id):
     flaggedReview = Review.objects.get(id=review_id)
@@ -98,14 +114,7 @@ def wine_variety_stats(request):
 
 
 # Review CRUD
-@method_decorator(login_required, name='dispatch')
-class ReviewCreate(CreateView):
-    model = Review
-    fields = ['comment', 'user', 'rating']
-    def form_valid(self, form):
-        form.instance.created_by = self.request.user
-        return super().form_valid(form)
-
+    
 @method_decorator(login_required, name='dispatch')
 class ReviewUpdate(UpdateView):
     model = Review
@@ -175,3 +184,19 @@ def wine_review_create(request, pk):
     else:
         form = WineReviewCreateForm(initial={'wine_id': wine.id,})
     return render(request, 'winereviews/wine_review_create.html', {'form': form})
+
+def wine_type_ahead(request):
+    if request.is_ajax():
+        q = request.GET.get('term', '')
+        collection = Wine.objects.filter(name__icontains=q)
+        results = []
+        for item in collection:
+            item_json = {}
+            item_json = {'value': item.name, 'id': item.id}
+            results.append(item_json)
+        data = json.dumps(results)
+    else:
+        data = 'fail'
+    mimetype = 'application/json'
+    return HttpResponse(data, mimetype)
+

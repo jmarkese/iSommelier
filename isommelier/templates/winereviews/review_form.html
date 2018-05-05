@@ -7,8 +7,40 @@
         <h2>Wine Review</h2>
         <form action="" method="post">{% csrf_token %}
             {{ form.as_p }}
+            
+            <div class="ui-widget">
+              <label for="wines">wines: </label>
+              <input id="wines">
+            </div>  
+            
             <input type="submit" value="Save" />
         </form>
       </div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+    {{ block.super }}
+
+    <script>
+    
+      $(function() {
+        $("#wines").autocomplete({
+          source: "{% url 'wine_type_ahead' %}",
+          select: function (event, ui) { //item selected
+            AutoCompleteSelectHandler(event, ui)
+          },
+          minLength: 3,
+        });
+      });
+    
+      function AutoCompleteSelectHandler(event, ui)
+      {
+        $("#id_wine_id").val(ui.item.id);
+      }
+    
+    </script>
 
 {% endblock %}
