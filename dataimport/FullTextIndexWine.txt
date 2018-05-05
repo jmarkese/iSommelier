@@ -1,1 +1,2 @@
 ALTER TABLE winereviews_wine ADD FULLTEXT (name, description,varietal);
+ALTER TABLE winereviews_reviews ADD FULLTEXT (comment);
