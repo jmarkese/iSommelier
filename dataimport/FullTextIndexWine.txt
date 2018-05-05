@@ -1,2 +1,5 @@
 ALTER TABLE winereviews_wine ADD FULLTEXT (name, description,varietal);
 ALTER TABLE winereviews_review ADD FULLTEXT (comment);
+
+ALTER TABLE winereviews_review ADD COLUMN comment_nlp TEXT;
+ALTER TABLE winereviews_review ADD FULLTEXT idx__winereviews_review__comment_nlp (comment_nlp);
