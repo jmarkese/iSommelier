@@ -8,7 +8,7 @@ class WineReviewCreateForm(forms.Form):
     comment = forms.CharField(widget=forms.Textarea)
     rating  = forms.IntegerField(min_value=0, max_value=100)
     wine_id = forms.IntegerField(widget=forms.HiddenInput())
-    user_id = forms.ModelChoiceField(queryset=User.objects.all())
+    user_id = forms.IntegerField(widget=forms.HiddenInput())
 
     def save_review(self):
         with connection.cursor() as cursor:
