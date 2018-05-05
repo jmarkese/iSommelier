@@ -1,6 +1,7 @@
 
 import csv
 import json
+import metapy
 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.views.generic import ListView
@@ -208,6 +209,16 @@ def wine_review_search(request):
         form = WineReviewSearchForm(request.POST)
         if form.is_valid():
             template = loader.get_template('winereviews/wine_review_search_results.html')
+            
+            
+            
+            # ana = metapy.analyzers.load('config.toml')
+            # doc = metapy.index.Document()
+            # doc.content("I said that I can't believe that it only costs $19.95!")
+            # print(ana.analyze(doc))
+            
+            
+            
             results = []
         
             if request.method == 'POST':
@@ -223,17 +234,3 @@ def wine_review_search(request):
     return render(request, 'winereviews/wine_review_search.html', {'form': form})
 
     
-
-def wine_review_search_results(request):
-    template = loader.get_template('winereviews/wine_review_search_results.html')
-    results = []
-
-    if request.method == 'POST':
-        # form = WineReviewSearchForm(request.POST)
-        query = request.POST['search_query']
-        
-    context = {
-        'results': results,
-    }
-    return HttpResponse(template.render(context, request))
-
