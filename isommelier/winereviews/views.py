@@ -13,7 +13,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.db import connection
 from .models import Variety, Review, Wine
-from .forms import WineReviewCreateForm
+from .forms import WineReviewCreateForm, WineReviewSearchForm
 
 
 def index(request):
@@ -199,4 +199,41 @@ def wine_type_ahead(request):
         data = 'fail'
     mimetype = 'application/json'
     return HttpResponse(data, mimetype)
+
+
+# Wine Review NLP search
+
+def wine_review_search(request):
+    if request.method == 'POST':
+        form = WineReviewSearchForm(request.POST)
+        if form.is_valid():
+            template = loader.get_template('winereviews/wine_review_search_results.html')
+            results = []
+        
+            if request.method == 'POST':
+                query = request.POST['search_query']
+                
+            context = {
+                'results': results,
+            }
+            return HttpResponse(template.render(context, request))
+    else:
+        form = WineReviewSearchForm()
+
+    return render(request, 'winereviews/wine_review_search.html', {'form': form})
+
+    
+
+def wine_review_search_results(request):
+    template = loader.get_template('winereviews/wine_review_search_results.html')
+    results = []
+
+    if request.method == 'POST':
+        # form = WineReviewSearchForm(request.POST)
+        query = request.POST['search_query']
+        
+    context = {
+        'results': results,
+    }
+    return HttpResponse(template.render(context, request))
 

@@ -1,0 +1,14 @@
+{% extends "winereviews/consultancybase.html" %}
+{% load static %}
+{% block content %}
+
+      <div id='side-bar-2'>
+
+        <h2>Wine Review</h2>
+        <form action="" method="post">{% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Search" />
+        </form>
+      </div>
+
+{% endblock %}
