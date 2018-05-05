@@ -3,11 +3,13 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="//d3js.org/d3.v4.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
     <style>
 
       body {
@@ -54,6 +56,19 @@
             height: -moz-available;
             width: -moz-available;
             }
+       .map {
+  height: 100%;
+}
+
+.water {
+    fill: none;
+}
+
+.land {
+  fill: #40403E;
+  stroke: #31322D;
+  stroke-width: 0.7px;
+}
     </style>
   </head>
 

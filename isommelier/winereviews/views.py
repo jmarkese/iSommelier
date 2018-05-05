@@ -21,10 +21,10 @@ def index(request):
     context = {
         'a_var': 0,
     }
-    return HttpResponse(template.render(context, request))  
+    return HttpResponse(template.render(context, request))
 
 def winebycountry(request):
-    template = loader.get_template('winereviews/winebycountry.html')
+    template = loader.get_template('winereviews/worldmap-template.html')
     context = {
         'a_var': 0,
     }
@@ -36,7 +36,7 @@ def consultancy(request):
         'a_var': 0,
     }
     return HttpResponse(template.render(context, request))
-    
+
 
 
 def variety_options(request):
@@ -94,7 +94,7 @@ def review_like(request, review_id):
     return HttpResponse(likedReview.likes,content_type='text/plain')
 
 def wine_variety_stats(request):
-    response = HttpResponse(content_type='text/csv')
+    response = HttpResponse(content_type='text/plain')
     sql = '''
         SELECT A.id, count(C.id) review_count
         FROM winereviews_variety A
@@ -111,10 +111,19 @@ def wine_variety_stats(request):
         writer.writerow([v.name, v.review_count])
     return response
 
-
+def wine_country_report(request, countryName='France'):
+    sql = '''
+        SELECT country , sum(wine_count) wine_count
+        FROM winery_report where country =  %s
+        group BY country;
+    '''
+    with connection.cursor() as cursor:
+        cursor.execute(sql, [countryName])
+        country = cursor.fetchone()
+    return HttpResponse(country[1], content_type='text/plain')
 
 # Review CRUD
-    
+
 @method_decorator(login_required, name='dispatch')
 class ReviewUpdate(UpdateView):
     model = Review
@@ -126,7 +135,7 @@ class ReviewDelete(DeleteView):
     success_url = reverse_lazy('review-list')
 
 class ReviewList(ListView):
-    model = Review 
+    model = Review
     paginate_by = 100
 
 def review_detail(request, pk):
@@ -158,7 +167,7 @@ class WineDelete(DeleteView):
     success_url = reverse_lazy('wine-list')
 
 class WineList(ListView):
-    model = Wine 
+    model = Wine
     paginate_by = 100
 
 def wine_detail(request, pk):

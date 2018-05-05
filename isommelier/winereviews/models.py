@@ -62,3 +62,14 @@ class Review(models.Model):
     def get_absolute_url(self):
         return reverse('review_detail', kwargs={'pk': self.pk})
 
+    class Winery_report(models.Model):
+        name = models.TextField()
+        province = models.TextField()
+        region = models.TextField()
+        country = models.TextField()
+        wine_Count = models.IntegerField()
+        variety_count = models.IntegerField()
+
+        class Meta:
+            managed = False
+            db_table = 'winery_report'  # your view name

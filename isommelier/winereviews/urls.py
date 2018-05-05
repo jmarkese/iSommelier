@@ -7,7 +7,9 @@ from . import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('consultancy/', views.consultancy, name='consultancy'),
+    path('worldmap-template/', views.winebycountry, name='worldmap-template'),
     path('wine_variety_stats/', views.wine_variety_stats, name='wine_variety_stats'),
+    path('wine_country_report/<countryName>/', views.wine_country_report, name='wine_country_report'),
     path('variety_options/', views.variety_options, name='variety_options'),
     path('variety_reviews/<int:variety_id>', views.variety_reviews, name='variety_reviews'),
 
