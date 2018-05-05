@@ -9,7 +9,7 @@ from django.urls import reverse_lazy, reverse
 from django.shortcuts import render, get_object_or_404
 from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect
-from django.db.models import Count
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.db import connection
@@ -210,22 +210,29 @@ def wine_review_search(request):
         if form.is_valid():
             template = loader.get_template('winereviews/wine_review_search_results.html')
             
-            
-            
-            # ana = metapy.analyzers.load('config.toml')
-            # doc = metapy.index.Document()
-            # doc.content("I said that I can't believe that it only costs $19.95!")
-            # print(ana.analyze(doc))
-            
-            
-            
-            results = []
-        
             if request.method == 'POST':
                 query = request.POST['search_query']
-                
+
+            doc = metapy.index.Document()
+            doc.content(query)
+            tok = metapy.analyzers.ICUTokenizer(suppress_tags=True)
+            stop_words = settings.BASE_DIR + "/nlp/lemur-stopwords.txt"
+            tok = metapy.analyzers.ListFilter(tok, stop_words, metapy.analyzers.ListFilter.Type.Reject)
+            tok = metapy.analyzers.Porter2Filter(tok)
+            tok.set_content(doc.content())
+            tokens = [token for token in tok]
+            against = " ".join(tokens)
+
+            sql = '''
+                SELECT id FROM winereviews_review 
+                WHERE MATCH(comment_nlp) AGAINST(%s IN NATURAL LANGUAGE MODE) LIMIT 20
+            '''
+
+            results = Review.objects.raw(sql, [against])
+
             context = {
                 'results': results,
+                'query': query,
             }
             return HttpResponse(template.render(context, request))
     else:
