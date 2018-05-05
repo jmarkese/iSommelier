@@ -1,0 +1,1 @@
+ALTER TABLE winereviews_wine ADD FULLTEXT (name, description,varietal);

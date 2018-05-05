@@ -21,7 +21,12 @@ def index(request):
     }
     return HttpResponse(template.render(context, request))  
 
-
+def winebycountry(request):
+    template = loader.get_template('winereviews/winebycountry.html')
+    context = {
+        'a_var': 0,
+    }
+    return HttpResponse(template.render(context, request))
 
 def consultancy(request):
     template = loader.get_template('winereviews/consultancy.html')
@@ -54,16 +59,17 @@ def variety_reviews(request, variety_id):
     '''
     reviews = Review.objects.raw(sql, [variety_id])
     writer = csv.writer(response)
-    writer.writerow(['country','description','designation','points','price','taster','variety','winery', 'id', 'likes'])
+    writer.writerow(['country','description','designation','points','price','taster','variety','winery', 'id', 'likes','flag'])
     for r in reviews:
-        writer.writerow([r.wine.winery.country, r.comment, r.wine.name, r.rating, r.wine.price, r.user.username, r.wine.variety.name, r.wine.winery.name, r.id, r.likes])
+        writer.writerow([r.wine.winery.country, r.comment, r.wine.name, r.rating, r.wine.price, r.user.username, r.wine.variety.name, r.wine.winery.name, r.id, r.likes, r.flag])
     return response
 
 
 def review_delete(request, review_id):
-    Review.objects.filter(id =review_id).delete()
-    return HttpResponse('Success',content_type='text/plain')
-
+    flaggedReview = Review.objects.get(id=review_id)
+    flaggedReview.flag = flaggedReview.flag + 1
+    flaggedReview.save()
+    return HttpResponse(1, content_type='text/plain')
 
 def review_like(request, review_id):
     likedReview = Review.objects.get(id =review_id)

@@ -1,0 +1,4 @@
+CREATE TRIGGER flag_user AFTER UPDATE ON winereviews_review 
+FOR EACH ROW IF NEW.flag > 0 THEN 
+update auth_user set flag =1 where id = NEW.user_id; 
+END IF;

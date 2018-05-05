@@ -32,7 +32,7 @@ function getVarietyReviewData(varietyId) {
         
 	    var reviewArray = [];
 	    data.forEach(function(d, i){
-        	reviewArray.push([d.taster, d.points, d.designation, d.variety, d.winery, d.country, d.description, d.id, d.likes]);
+        	reviewArray.push([d.taster, d.points, d.designation, d.variety, d.winery, d.country, d.description, d.id, d.likes, d.flag]);
 	    });
 
 	    //generate table
@@ -45,7 +45,8 @@ function deleteReview(reviewId) {
     var reviewDeleteResponse = "../../winereviews/review_delete/" + reviewId;
     d3.request(reviewDeleteResponse)
         .get(function() { console.log("GET"); })
-        .response(function(xhr) { console.log(xhr.responseText); });
+        .response(function(xhr) { console.log(xhr.responseText);
+        });
 }
 
 function likeReview(reviewId) {
@@ -94,20 +95,27 @@ function tabulate(data, columns, id) {
         .enter()
         .append("td")
         .text(function(d) { return d.value; });
-
+    rows.append("td")
+            .attr("class", "likebutton")
+            .text(function(d){return d[8];});
     rows.append("td")
             .attr("class", "likebutton")
             .append("img")
             .attr("src" ,"../../static/images/like.png")
             .attr("height","30px")
-            .on("click", function(d){ alert("Thanks for liking. This review now has " + ++d[8] + "!"); likeReview(d[7]); });
-
+            .on("click", function(d){ likeReview(d[7]); $(this).closest('td').prev().text(++d[8]); });
     rows.append("td")
-            .attr("class", "button")
-            .append("button")
-            .text(function(d){return "Delete"})
-            .on("click", function(d){ $(this).closest('tr').remove(); deleteReview(d[7]); });
-            
+            .attr("class", "likebutton")
+            .text(function(d){return d[9];});
+    rows.append("td")
+            .attr("class", "likebutton")
+            .append("img")
+            .attr("src" ,"../../static/images/flag.png")
+            .attr("height","30px")
+            .on("click", function(d){ deleteReview(d[7]); $(this).closest('td').prev().text(++d[9]);});
+
+
+
     return table;
 };
 

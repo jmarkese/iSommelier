@@ -57,6 +57,7 @@ class Review(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     likes = models.IntegerField()
+    flag = models.IntegerField()
 
     def get_absolute_url(self):
         return reverse('review_detail', kwargs={'pk': self.pk})
