@@ -12,6 +12,7 @@ urlpatterns = [
     path('wine_country_report/<countryName>/', views.wine_country_report, name='wine_country_report'),
     path('variety_options/', views.variety_options, name='variety_options'),
     path('variety_reviews/<int:variety_id>', views.variety_reviews, name='variety_reviews'),
+    path('wine_review_search/', views.wine_review_search, name='wine_review_search'),
 
     # Reviews CRUD
     path('review_create/', views.review_create, name='review_create'),

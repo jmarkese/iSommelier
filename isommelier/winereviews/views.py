@@ -1,6 +1,7 @@
 
 import csv
 import json
+import metapy
 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.views.generic import ListView
@@ -8,12 +9,12 @@ from django.urls import reverse_lazy, reverse
 from django.shortcuts import render, get_object_or_404
 from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect
-from django.db.models import Count
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.db import connection
 from .models import Variety, Review, Wine
-from .forms import WineReviewCreateForm
+from .forms import WineReviewCreateForm, WineReviewSearchForm
 
 
 def index(request):
@@ -209,3 +210,43 @@ def wine_type_ahead(request):
     mimetype = 'application/json'
     return HttpResponse(data, mimetype)
 
+
+# Wine Review NLP search
+
+def wine_review_search(request):
+    if request.method == 'POST':
+        form = WineReviewSearchForm(request.POST)
+        if form.is_valid():
+            template = loader.get_template('winereviews/wine_review_search_results.html')
+            
+            if request.method == 'POST':
+                query = request.POST['search_query']
+
+            doc = metapy.index.Document()
+            doc.content(query)
+            tok = metapy.analyzers.ICUTokenizer(suppress_tags=True)
+            stop_words = settings.BASE_DIR + "/nlp/lemur-stopwords.txt"
+            tok = metapy.analyzers.ListFilter(tok, stop_words, metapy.analyzers.ListFilter.Type.Reject)
+            tok = metapy.analyzers.Porter2Filter(tok)
+            tok.set_content(doc.content())
+            tokens = [token for token in tok]
+            against = " ".join(tokens)
+
+            sql = '''
+                SELECT id FROM winereviews_review 
+                WHERE MATCH(comment_nlp) AGAINST(%s IN NATURAL LANGUAGE MODE) LIMIT 20
+            '''
+
+            results = Review.objects.raw(sql, [against])
+
+            context = {
+                'results': results,
+                'query': query,
+            }
+            return HttpResponse(template.render(context, request))
+    else:
+        form = WineReviewSearchForm()
+
+    return render(request, 'winereviews/wine_review_search.html', {'form': form})
+
+    

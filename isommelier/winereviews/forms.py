@@ -19,3 +19,6 @@ class WineReviewCreateForm(forms.Form):
             '''
             cursor.execute(sql, [self.rating, self.comment, self.wine_id, self.user_id])
         pass
+    
+class WineReviewSearchForm(forms.Form):
+    search_query = forms.CharField(label='Search')
