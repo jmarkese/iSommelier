@@ -228,7 +228,8 @@ function getCount(props) {
 
   xhttp.open("GET", request, true);
   xhttp.send();
-  return "WineCount : " + props.new;
+  count = (typeof(props.new)  == "undefined") ? "" : props.new;
+  return countryname + " : " + count;
 }
 
 //function to add points and text to the map (used in plotting capitals)
