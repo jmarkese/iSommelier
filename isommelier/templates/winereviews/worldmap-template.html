@@ -56,6 +56,12 @@ div.tooltip {
   <h1>A graphical representation of wines showing the number of different wines in each country</h1>
 
   <div id="container"></div>
+  <p style="text-align: center;">Click on a country to search for those wines</p>
+
+  <form action="{% url 'wine_review_search' %}" method="post" id="id_search_form" action="">{% csrf_token %}
+      {{ form }}
+  </form>
+
 {% endblock %}
 
 
@@ -148,7 +154,16 @@ function draw(topo) {
 
       .on("mouseout",  function(d,i) {
         tooltip.classed("hidden", true);
+      })
+
+      .on("click",  function(d,i) {
+          var country = d.properties.name;
+          console.log(d);
+          console.log(i);
+          document.getElementById('id_search_query').value = country;
+          document.getElementById('id_search_form').submit();
       });
+
 
 
   //EXAMPLE: adding some capitals from external CSV file

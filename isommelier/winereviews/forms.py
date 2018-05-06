@@ -22,3 +22,6 @@ class WineReviewCreateForm(forms.Form):
     
 class WineReviewSearchForm(forms.Form):
     search_query = forms.CharField(label='Search')
+
+class WineReviewHiddenSearchForm(forms.Form):
+    search_query = forms.CharField(widget=forms.HiddenInput())
