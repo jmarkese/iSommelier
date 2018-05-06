@@ -66,9 +66,9 @@ def variety_reviews(request, variety_id):
     '''
     reviews = Review.objects.raw(sql, [variety_id])
     writer = csv.writer(response)
-    writer.writerow(['country','description','designation','points','price','taster','variety','winery', 'id', 'likes','flag'])
+    writer.writerow(['country','description','designation','points','price','taster','variety','winery', 'id', 'likes','flag','vintage'])
     for r in reviews:
-        writer.writerow([r.wine.winery.country, r.comment, r.wine.name, r.rating, r.wine.price, r.user.username, r.wine.variety.name, r.wine.winery.name, r.id, r.likes, r.flag])
+        writer.writerow([r.wine.winery.country, r.comment, r.wine.name, r.rating, r.wine.price, r.user.username, r.wine.variety.name, r.wine.winery.name, r.id, r.likes, r.flag, r.wine.vintage])
     return response
 
 def review_create(request):
@@ -80,7 +80,11 @@ def review_create(request):
             (rating, comment, wine_id, user_id)
             VALUES (%s, %s, %s, %s)
             '''
-            cursor.execute(sql, [request.POST['rating'], request.POST['comment'], request.POST['wine_id'], request.POST['user_id']])
+            if request.POST['user_id'] == "":
+                user_id = 21
+            else:
+                user_id = request.POST['user_id']
+            cursor.execute(sql, [request.POST['rating'], request.POST['comment'], request.POST['wine_id'], user_id])
         return HttpResponseRedirect(reverse('wine_list'))
     else:
         form = WineReviewCreateForm(initial={'user_id': request.user.id,})
@@ -139,12 +143,10 @@ def wine_country_report(request, countryName='France'):
 
 # Review CRUD
 
-@method_decorator(login_required, name='dispatch')
 class ReviewUpdate(UpdateView):
     model = Review
     fields = ['comment', 'user', 'rating']
 
-@method_decorator(login_required, name='dispatch')
 class ReviewDelete(DeleteView):
     model = Review
     success_url = reverse_lazy('review-list')
@@ -163,7 +165,6 @@ def review_detail(request, pk):
 
 
 # Wine CRUD
-@method_decorator(login_required, name='dispatch')
 class WineCreate(CreateView):
     model = Wine
     fields = ['name', 'variety', 'winery', 'price', 'description']
@@ -171,12 +172,10 @@ class WineCreate(CreateView):
         form.instance.created_by = self.request.user
         return super().form_valid(form)
 
-@method_decorator(login_required, name='dispatch')
 class WineUpdate(UpdateView):
     model = Wine
     fields = ['name', 'variety', 'winery', 'price', 'description']
 
-@method_decorator(login_required, name='dispatch')
 class WineDelete(DeleteView):
     model = Wine
     success_url = reverse_lazy('wine-list')

@@ -35,6 +35,7 @@ class Wine(models.Model):
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    vintage = models.IntegerField()
 
     def __str__(self):
         return '%s' % (self.description)
