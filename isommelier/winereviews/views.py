@@ -62,6 +62,7 @@ def variety_reviews(request, variety_id):
         JOIN winereviews_wine B ON A.wine_id = B.id
         JOIN winereviews_variety C ON B.variety_id = C.id
         AND C.id = %s
+        LIMIT 100
     '''
     reviews = Review.objects.raw(sql, [variety_id])
     writer = csv.writer(response)
@@ -110,9 +111,9 @@ def wine_variety_stats(request):
     '''
     varieties = Variety.objects.raw(sql)
     writer = csv.writer(response)
-    writer.writerow(['id', 'value'])
+    writer.writerow(['id', 'value', 'varietyId'])
     for v in varieties:
-        writer.writerow([v.name, v.review_count])
+        writer.writerow([v.name, v.review_count, v.id])
     return response
 
 def wine_country_report(request, countryName='France'):
@@ -235,7 +236,7 @@ def wine_review_search(request):
             if request.method == 'POST':
                 query = request.POST['search_query']
 
-            against = get_comment_nlp(query)
+            against = get_query_nlp(query)
 
             sql = '''
                 SELECT id FROM winereviews_review 
@@ -249,7 +250,7 @@ def wine_review_search(request):
             except:
                 synonym_query = get_synonyms(query)
                 if synonym_query[0] is not None:
-                    against = get_comment_nlp(synonym_query)
+                    against = get_query_nlp(synonym_query)
                     results = Review.objects.raw(sql, [against])
 
             context = {
@@ -263,9 +264,9 @@ def wine_review_search(request):
     return render(request, 'winereviews/wine_review_search.html', {'form': form})
 
 
-def get_comment_nlp(comment):
+def get_query_nlp(query):
     doc = metapy.index.Document()
-    doc.content(str(comment))
+    doc.content(str(query))
     tok = metapy.analyzers.ICUTokenizer(suppress_tags=True)
     stop_words = settings.BASE_DIR + "/nlp/lemur-stopwords.txt"
     tok = metapy.analyzers.ListFilter(tok, stop_words, metapy.analyzers.ListFilter.Type.Reject)
