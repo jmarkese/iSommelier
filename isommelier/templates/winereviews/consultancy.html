@@ -1,5 +1,11 @@
 {% extends "winereviews/consultancybase.html" %}
 {% load static %}
+{% block custom_styles %}
+g.node > circle {
+    cursor: pointer;
+}
+{% endblock %}
+
 {% block content %}
 
       <div id='side-bar-2'>
@@ -14,9 +20,10 @@
           <script src="{% static "js/wine-variety-bubble.js" %}"></script>
         </div>
 
-        <h4 style='margin-top:60px'>Pick a wine variety to look at the reviews</h4>
-        
-        <div>
+
+        <div style="text-align:center">
+        <h4 style='margin-top:60px'>Click a wine variety Above</h4>
+        <h4>Or select a  wine variety Below</h4>
           <form id="pickawine-form">
             <select id="pickawine-select">
               <option>Pick a wine</option>
@@ -25,7 +32,6 @@
         </div>
         <p>Results: </p>
         <div id='pickawine-result'></div>
-        <script src="{% static "js/pick-a-wine-tb.js" %}"></script>
 
       </div>
 
