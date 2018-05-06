@@ -85,10 +85,48 @@ def review_create(request):
             else:
                 user_id = request.POST['user_id']
             cursor.execute(sql, [request.POST['rating'], request.POST['comment'], request.POST['wine_id'], user_id])
-        return HttpResponseRedirect(reverse('wine_list'))
+        return HttpResponseRedirect(reverse('reviews'))
     else:
         form = WineReviewCreateForm(initial={'user_id': request.user.id,})
         return render(request, 'winereviews/review_form.html', {'form': form})
+
+    # path('review/<int:pk>/', views.review_update, name='review_update'),
+    # path('review/<int:pk>/delete/', views.review_delete_actual, name='review_delete_actual'),
+
+def review_delete_actual(request, pk):
+    with connection.cursor() as cursor:
+        sql = '''
+            DELETE FROM winereviews_review 
+            WHERE id = %s
+        '''
+        cursor.execute(sql, [pk])
+        return HttpResponseRedirect(reverse('reviews'))
+
+def review_update(request, pk):
+    review = Review.objects.get(id=pk)
+    if request.method == 'POST':
+        form = WineReviewCreateForm(request.POST)
+        with connection.cursor() as cursor:
+            sql = '''
+                UPDATE winereviews_review SET
+                rating=%s, comment=%s, wine_id=%s, user_id=%s
+                WHERE id = %s;
+                '''
+            if request.POST['user_id'] == "":
+                user_id = 21
+            else:
+                user_id = request.POST['user_id']
+            cursor.execute(sql, [request.POST['rating'], request.POST['comment'], request.POST['wine_id'], user_id, pk])
+        return HttpResponseRedirect(reverse('reviews'))
+    else:
+        if request.user.id is None:
+            user_id = 21
+        else:
+            user_id = request.user.id
+        form = WineReviewCreateForm(initial={'user_id': user_id,'comment': review.comment, 'wine_id': review.wine_id, 'rating':review.rating,})
+        return render(request, 'winereviews/review_form.html', {'form': form})
+
+
 
 def review_delete(request, review_id):
     flaggedReview = Review.objects.get(id=review_id)

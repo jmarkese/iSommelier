@@ -20,8 +20,8 @@ urlpatterns = [
     path('review_like/<int:review_id>', views.review_like, name='review_like'),
 
     path('reviews/', ReviewList.as_view(), name ='reviews'),
-    path('review/<int:pk>/', ReviewUpdate.as_view(), name='review_update'),
-    path('review/<int:pk>/delete/', ReviewDelete.as_view(), name='review_delete'),
+    path('review/<int:pk>/', views.review_update, name='review_update'),
+    path('review/<int:pk>/delete/', views.review_delete_actual, name='review_delete_actual'),
     path('review/<int:pk>/detail', views.review_detail, name='review_detail'),
 
     # Wines CRUD

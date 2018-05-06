@@ -6,13 +6,24 @@
     <a href="/winereviews/review_create">New Review</a>
 
     <table id="cars">
+            <thead>
+                <th>User</th>
+                <th>Wine</th>
+                <th>Rating</th>
+                <th>Comment</th>
+                <th>Controls</th>
+            </thead>
         {% for review in object_list %}
             <tr>
                 <td>{{ review.user }}</td>
-                <td>{{ review.wine.name }}</td>
+                <td>{{ review.wine.name }} {{ review.wine.vintage }}</td>
                 <td>{{ review.rating }}</td>
-                <td>{{ review.created_at }}</td>
-                <td><a href="/winereviews/review/{{ review.id }}/" class="see_detail">edit</a></td>
+                <td>{{ review.comment }}</td>
+                <td>
+                    <a href="/winereviews/review/{{ review.id }}/detail" class="see_detail">show</a>
+                    <a href="/winereviews/review/{{ review.id }}/" class="see_detail">edit</a>
+                    <a href="/winereviews/review/{{ review.id }}/delete" class="see_detail">delete</a>
+                </td>
             </tr>
         {% endfor %}
     </table>
