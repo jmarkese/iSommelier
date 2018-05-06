@@ -5,7 +5,7 @@ END IF;
 
 
 
-
+# THIS ONE WORKED:
 DELIMITER /
 create procedure test_pro()
 begin
