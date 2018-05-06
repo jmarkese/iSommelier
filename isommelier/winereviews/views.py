@@ -109,14 +109,10 @@ def review_update(request, pk):
         with connection.cursor() as cursor:
             sql = '''
                 UPDATE winereviews_review SET
-                rating=%s, comment=%s, wine_id=%s, user_id=%s
+                rating=%s, comment=%s, wine_id=%s
                 WHERE id = %s;
                 '''
-            if request.POST['user_id'] == "":
-                user_id = 21
-            else:
-                user_id = request.POST['user_id']
-            cursor.execute(sql, [request.POST['rating'], request.POST['comment'], request.POST['wine_id'], user_id, pk])
+            cursor.execute(sql, [request.POST['rating'], request.POST['comment'], request.POST['wine_id'], pk])
         return HttpResponseRedirect(reverse('reviews'))
     else:
         if request.user.id is None:
