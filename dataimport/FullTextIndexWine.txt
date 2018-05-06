@@ -3,3 +3,5 @@ ALTER TABLE winereviews_review ADD FULLTEXT (comment);
 
 ALTER TABLE winereviews_review ADD COLUMN comment_nlp TEXT;
 ALTER TABLE winereviews_review ADD FULLTEXT idx__winereviews_review__comment_nlp (comment_nlp);
+
+CREATE view country_wine_count AS SELECT A.country, count(*) wine_count FROM winereviews_winery A JOIN winereviews_wine B on B.winery_id = A.id GROUP BY A.country;

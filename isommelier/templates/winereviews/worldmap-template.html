@@ -46,6 +46,7 @@ div.tooltip {
 {% endblock %}
 
 {% block custom_head %}
+<title>Wines By Country</title>
 <script src="{% static "/js/topojson.v1.min.js" %}"></script>
 <script src="{% static "/js/d3.min.js" %}"></script>
 {% endblock %}
@@ -144,6 +145,7 @@ function draw(topo) {
              .text(function(){return getCount(d.properties);});
 
       })
+
       .on("mouseout",  function(d,i) {
         tooltip.classed("hidden", true);
       });
@@ -226,7 +228,8 @@ function getCount(props) {
 
   xhttp.open("GET", request, true);
   xhttp.send();
-  return "WineCount : " + props.new;
+  count = (typeof(props.new)  == "undefined") ? "" : props.new;
+  return countryname + " : " + count;
 }
 
 //function to add points and text to the map (used in plotting capitals)

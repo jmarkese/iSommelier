@@ -113,15 +113,25 @@ def wine_variety_stats(request):
     return response
 
 def wine_country_report(request, countryName='France'):
+    count = 0
+    countryDict = {
+        "United States": "US",
+    }
+    countryName = countryDict.get(countryName, countryName)
+
     sql = '''
-        SELECT country , sum(wine_count) wine_count
-        FROM winery_report where country =  %s
-        group BY country;
+        SELECT country , wine_count
+        FROM country_wine_count where country =  %s;
     '''
+
     with connection.cursor() as cursor:
         cursor.execute(sql, [countryName])
         country = cursor.fetchone()
-    return HttpResponse(country[1], content_type='text/plain')
+
+    if country is not None:
+        count = country[1]
+
+    return HttpResponse(count, content_type='text/plain')
 
 # Review CRUD
 
