@@ -38,6 +38,7 @@ with open('winemag-data-130k-v2-clean.csv', 'r') as csvfile:
             i += 1
             continue
 
+        country = row[1]
         user_name = row[10]
         description = row[11]
         rating = row[4]
@@ -60,7 +61,7 @@ with open('winemag-data-130k-v2-clean.csv', 'r') as csvfile:
         if wine_id is None:
             wine_id = 1
 
-        nlp_data = " ".join([str(user_name), str(wine_name), str(variety_name), str(description), str(comment)])
+        nlp_data = " ".join([str(user_name), str(wine_name), str(variety_name), str(description), str(country), str(comment)])
         comment_nlp = get_comment_nlp(nlp_data)
 
         values = [comment, user_id, wine_id, rating, comment_nlp]

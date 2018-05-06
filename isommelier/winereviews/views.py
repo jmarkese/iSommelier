@@ -14,7 +14,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.db import connection
 from .models import Variety, Review, Wine
-from .forms import WineReviewCreateForm, WineReviewSearchForm
+from .forms import WineReviewCreateForm, WineReviewSearchForm, WineReviewHiddenSearchForm
 
 
 def index(request):
@@ -25,11 +25,14 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 def winebycountry(request):
-    template = loader.get_template('winereviews/worldmap-template.html')
-    context = {
-        'a_var': 0,
-    }
-    return HttpResponse(template.render(context, request))
+    form = WineReviewHiddenSearchForm()
+    return render(request, 'winereviews/worldmap-template.html', {'form': form})
+    #
+    # template = loader.get_template('winereviews/worldmap-template.html')
+    # context = {
+    #     'a_var': 0,
+    # }
+    # return HttpResponse(template.render(context, request))
 
 def consultancy(request):
     template = loader.get_template('winereviews/consultancy.html')
@@ -232,15 +235,7 @@ def wine_review_search(request):
             if request.method == 'POST':
                 query = request.POST['search_query']
 
-            doc = metapy.index.Document()
-            doc.content(query)
-            tok = metapy.analyzers.ICUTokenizer(suppress_tags=True)
-            stop_words = settings.BASE_DIR + "/nlp/lemur-stopwords.txt"
-            tok = metapy.analyzers.ListFilter(tok, stop_words, metapy.analyzers.ListFilter.Type.Reject)
-            tok = metapy.analyzers.Porter2Filter(tok)
-            tok.set_content(doc.content())
-            tokens = [token for token in tok]
-            against = " ".join(tokens)
+            against = get_comment_nlp(query)
 
             sql = '''
                 SELECT id FROM winereviews_review 
@@ -248,6 +243,14 @@ def wine_review_search(request):
             '''
 
             results = Review.objects.raw(sql, [against])
+
+            try:
+                results[0]
+            except:
+                synonym_query = get_synonyms(query)
+                if synonym_query[0] is not None:
+                    against = get_comment_nlp(synonym_query)
+                    results = Review.objects.raw(sql, [against])
 
             context = {
                 'results': results,
@@ -259,4 +262,28 @@ def wine_review_search(request):
 
     return render(request, 'winereviews/wine_review_search.html', {'form': form})
 
-    
+
+def get_comment_nlp(comment):
+    doc = metapy.index.Document()
+    doc.content(str(comment))
+    tok = metapy.analyzers.ICUTokenizer(suppress_tags=True)
+    stop_words = settings.BASE_DIR + "/nlp/lemur-stopwords.txt"
+    tok = metapy.analyzers.ListFilter(tok, stop_words, metapy.analyzers.ListFilter.Type.Reject)
+    tok = metapy.analyzers.Porter2Filter(tok)
+    tok.set_content(doc.content())
+    tokens = [token for token in tok]
+    return " ".join(tokens)
+
+def get_synonyms(query):
+    query = ",".join(query.split());
+    with connection.cursor() as cursor:
+        sql = '''
+            SELECT GROUP_CONCAT(synonym SEPARATOR ' ') AS synonyms 
+            FROM nlp_variety_synonyms
+            WHERE variety IN (%s);
+        '''
+        cursor.execute(sql, [query])
+        synonyms = cursor.fetchone()
+
+    return synonyms
+
