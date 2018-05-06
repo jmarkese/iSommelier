@@ -6,13 +6,55 @@ END IF;
 
 
 
-DELIMITER $$
-CREATE TRIGGER flag_user 
-    AFTER UPDATE ON winereviews_review
-    FOR EACH ROW 
+DELIMITER /
+create procedure test_pro()
+begin
+select 'hello pro';
+end
+//
+
+CREATE TRIGGER flag_user
+  AFTER UPDATE
+  ON winereviews_review FOR EACH ROW
+IF NEW.flag > 0 THEN 
+update auth_user set flag =1 where id = NEW.user_id; 
+END IF
+/
+
+CREATE PROCEDURE updateVintage()
+  NO SQL
 BEGIN
-	IF NEW.flag > 0 THEN BEGIN
-	UPDATE auth_user SET flag=1 WHERE id=NEW.user_id; 
-	END; END IF;
-END$$
+ 
+ DECLARE v_finished INTEGER DEFAULT 0; 
+ DECLARE v_id integer ;
+ DECLARE v_vintage varchar(50) DEFAULT "";
+ 
+ DEClARE description_cursor CURSOR FOR 
+ SELECT id, REGEXP_SUBSTR(description,'[0-9]+') as vintage from winereviews_wine;
+ 
+ -- declare NOT FOUND handler
+ DECLARE CONTINUE HANDLER 
+        FOR NOT FOUND SET v_finished = 1;
+ 
+ OPEN description_cursor;
+ 
+ get_vintage: LOOP
+ 
+ FETCH description_cursor INTO v_id,v_vintage;
+ 
+ IF v_finished = 1 THEN 
+ LEAVE get_vintage;
+ END IF;
+ 
+ -- build email list
+ update winereviews_wine set vintage =v_vintage where id =v_id;
+ 
+ END LOOP get_vintage;
+ 
+ CLOSE description_cursor;
+ 
+END
+/
 DELIMITER ;
+
+
