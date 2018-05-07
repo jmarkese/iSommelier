@@ -247,6 +247,13 @@ CREATE VIEW winery_report
  varietal_count
 ) AS
 select `w1`.`name` AS `name`,`w1`.`province` AS `province`,`w1`.`region` AS `region`,`w1`.`country` AS `country`,`w1`.`wine_count` AS `wine_count`,count(distinct `w2`.`variety_id`) AS `varietal_count` from ((select `isommelier`.`winereviews_winery`.`id` AS `id`,`isommelier`.`winereviews_winery`.`name` AS `name`,`isommelier`.`winereviews_winery`.`province` AS `province`,`isommelier`.`winereviews_winery`.`region` AS `region`,`isommelier`.`winereviews_winery`.`country` AS `country`,count(distinct `isommelier`.`winereviews_wine`.`id`) AS `wine_count` from (`isommelier`.`winereviews_winery` join `isommelier`.`winereviews_wine` on(`isommelier`.`winereviews_winery`.`id` = `isommelier`.`winereviews_wine`.`winery_id`)) group by `isommelier`.`winereviews_winery`.`id`,`isommelier`.`winereviews_winery`.`name`,`isommelier`.`winereviews_winery`.`province`,`isommelier`.`winereviews_winery`.`region`,`isommelier`.`winereviews_winery`.`country`) `w1` join `isommelier`.`winereviews_wine` `w2` on(`w1`.`id` = `w2`.`winery_id`)) group by `w1`.`id`,`w1`.`name`,`w1`.`province`,`w1`.`region`,`w1`.`country`,`w1`.`wine_count`;
+
+CREATE VIEW `country_wine_count` AS 
+SELECT `A`.`country` AS `country`,
+count(0) AS `wine_count` 
+FROM (`winereviews_winery` `A` JOIN `winereviews_wine` `B` on((`B`.`winery_id` = `A`.`id`))) 
+GROUP BY `A`.`country`;
+
 /*******************************************************************************
  * Indices
  * -------
