@@ -1,0 +1,419 @@
+/*******************************************************************************
+ * Database character set: utf8
+ * Server version: 5.5
+ * Server version build: 5.5.5-10.2.6-MariaDB
+ ******************************************************************************/
+
+/*******************************************************************************
+ * Selected metadata objects
+ * -------------------------
+ * Extracted at 5/6/2018 6:18:04 PM
+ ******************************************************************************/
+
+/*******************************************************************************
+ * Tables
+ * ------
+ * Extracted at 5/6/2018 6:18:04 PM
+ ******************************************************************************/
+
+CREATE TABLE auth_group (
+  id     Integer(11) NOT NULL AUTO_INCREMENT,
+  `name` NVarChar(80) COLLATE utf8_general_ci NOT NULL, 
+  PRIMARY KEY (
+      id
+  )
+) ENGINE=InnoDB AUTO_INCREMENT=1 ROW_FORMAT=DYNAMIC DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE auth_group COMMENT = '';
+CREATE TABLE auth_group_permissions (
+  id            Integer(11) NOT NULL AUTO_INCREMENT,
+  group_id      Integer(11) NOT NULL,
+  permission_id Integer(11) NOT NULL, 
+  PRIMARY KEY (
+      id
+  )
+) ENGINE=InnoDB AUTO_INCREMENT=1 ROW_FORMAT=DYNAMIC DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE auth_group_permissions COMMENT = '';
+CREATE TABLE auth_permission (
+  id              Integer(11) NOT NULL AUTO_INCREMENT,
+  `name`          NVarChar(255) COLLATE utf8_general_ci NOT NULL,
+  content_type_id Integer(11) NOT NULL,
+  codename        NVarChar(100) COLLATE utf8_general_ci NOT NULL, 
+  PRIMARY KEY (
+      id
+  )
+) ENGINE=InnoDB AUTO_INCREMENT=37 ROW_FORMAT=DYNAMIC DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE auth_permission COMMENT = '';
+CREATE TABLE auth_user (
+  id           Integer(11) NOT NULL AUTO_INCREMENT,
+  password     NVarChar(128) COLLATE utf8_general_ci NOT NULL,
+  last_login   DateTime,
+  is_superuser TinyInt(1) NOT NULL,
+  username     NVarChar(150) COLLATE utf8_general_ci NOT NULL,
+  first_name   NVarChar(30) COLLATE utf8_general_ci NOT NULL,
+  last_name    NVarChar(150) COLLATE utf8_general_ci NOT NULL,
+  email        NVarChar(254) COLLATE utf8_general_ci NOT NULL,
+  is_staff     TinyInt(1) NOT NULL,
+  is_active    TinyInt(1) NOT NULL,
+  date_joined  DateTime NOT NULL,
+  flag         TinyInt(1), 
+  PRIMARY KEY (
+      id
+  )
+) ENGINE=InnoDB AUTO_INCREMENT=23 ROW_FORMAT=DYNAMIC DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE auth_user COMMENT = '';
+CREATE TABLE auth_user_groups (
+  id       Integer(11) NOT NULL AUTO_INCREMENT,
+  user_id  Integer(11) NOT NULL,
+  group_id Integer(11) NOT NULL, 
+  PRIMARY KEY (
+      id
+  )
+) ENGINE=InnoDB AUTO_INCREMENT=1 ROW_FORMAT=DYNAMIC DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE auth_user_groups COMMENT = '';
+CREATE TABLE auth_user_user_permissions (
+  id            Integer(11) NOT NULL AUTO_INCREMENT,
+  user_id       Integer(11) NOT NULL,
+  permission_id Integer(11) NOT NULL, 
+  PRIMARY KEY (
+      id
+  )
+) ENGINE=InnoDB AUTO_INCREMENT=1 ROW_FORMAT=DYNAMIC DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE auth_user_user_permissions COMMENT = '';
+CREATE TABLE django_admin_log (
+  id              Integer(11) NOT NULL AUTO_INCREMENT,
+  action_time     DateTime NOT NULL,
+  object_id       LongText CHARACTER SET utf8 COLLATE utf8_general_ci,
+  object_repr     NVarChar(200) COLLATE utf8_general_ci NOT NULL,
+  action_flag     SmallInt(5) UNSIGNED NOT NULL,
+  change_message  LongText CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  content_type_id Integer(11),
+  user_id         Integer(11) NOT NULL, 
+  PRIMARY KEY (
+      id
+  )
+) ENGINE=InnoDB AUTO_INCREMENT=1 ROW_FORMAT=DYNAMIC DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE django_admin_log COMMENT = '';
+CREATE TABLE django_content_type (
+  id        Integer(11) NOT NULL AUTO_INCREMENT,
+  app_label NVarChar(100) COLLATE utf8_general_ci NOT NULL,
+  model     NVarChar(100) COLLATE utf8_general_ci NOT NULL, 
+  PRIMARY KEY (
+      id
+  )
+) ENGINE=InnoDB AUTO_INCREMENT=13 ROW_FORMAT=DYNAMIC DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE django_content_type COMMENT = '';
+CREATE TABLE django_migrations (
+  id      Integer(11) NOT NULL AUTO_INCREMENT,
+  app     NVarChar(255) COLLATE utf8_general_ci NOT NULL,
+  `name`  NVarChar(255) COLLATE utf8_general_ci NOT NULL,
+  applied DateTime NOT NULL, 
+  PRIMARY KEY (
+      id
+  )
+) ENGINE=InnoDB AUTO_INCREMENT=20 ROW_FORMAT=DYNAMIC DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE django_migrations COMMENT = '';
+CREATE TABLE django_session (
+  session_key  NVarChar(40) COLLATE utf8_general_ci NOT NULL,
+  session_data LongText CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  expire_date  DateTime NOT NULL, 
+  PRIMARY KEY (
+      session_key
+  )
+) ENGINE=InnoDB ROW_FORMAT=DYNAMIC DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE django_session COMMENT = '';
+CREATE TABLE polls_choice (
+  id          Integer(11) NOT NULL AUTO_INCREMENT,
+  choice_text NVarChar(200) COLLATE utf8_general_ci NOT NULL,
+  votes       Integer(11) NOT NULL,
+  question_id Integer(11) NOT NULL, 
+  PRIMARY KEY (
+      id
+  )
+) ENGINE=InnoDB AUTO_INCREMENT=1 ROW_FORMAT=DYNAMIC DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE polls_choice COMMENT = '';
+CREATE TABLE polls_question (
+  id            Integer(11) NOT NULL AUTO_INCREMENT,
+  question_text NVarChar(200) COLLATE utf8_general_ci NOT NULL,
+  pub_date      DateTime NOT NULL, 
+  PRIMARY KEY (
+      id
+  )
+) ENGINE=InnoDB AUTO_INCREMENT=1 ROW_FORMAT=DYNAMIC DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE polls_question COMMENT = '';
+CREATE TABLE winereviews_review (
+  id         Integer(11) NOT NULL AUTO_INCREMENT,
+  `comment`  LongText CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  created_at DateTime NOT NULL,
+  updated_at DateTime NOT NULL,
+  user_id    Integer(11) NOT NULL,
+  wine_id    Integer(11) NOT NULL,
+  rating     SmallInt(5) UNSIGNED,
+  likes      Integer(11) DEFAULT 0,
+  flag       Integer(11) DEFAULT 0, 
+  PRIMARY KEY (
+      id
+  )
+) ENGINE=InnoDB AUTO_INCREMENT=129973 ROW_FORMAT=DYNAMIC DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE winereviews_review COMMENT = '';
+CREATE TABLE winereviews_variety (
+  id         Integer(11) NOT NULL AUTO_INCREMENT,
+  `name`     NVarChar(255) COLLATE utf8_general_ci NOT NULL,
+  created_at DateTime NOT NULL,
+  updated_at DateTime NOT NULL, 
+  PRIMARY KEY (
+      id
+  )
+) ENGINE=InnoDB AUTO_INCREMENT=643 ROW_FORMAT=DYNAMIC DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE winereviews_variety COMMENT = '';
+CREATE TABLE winereviews_wine (
+  id          Integer(11) NOT NULL AUTO_INCREMENT,
+  `name`      NVarChar(255) COLLATE utf8_general_ci NOT NULL,
+  price       Decimal(10, 2),
+  description LongText CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  created_at  DateTime NOT NULL,
+  updated_at  DateTime NOT NULL,
+  variety_id  Integer(11) NOT NULL,
+  winery_id   Integer(11) NOT NULL,
+  varietal    NVarChar(255) COLLATE utf8_general_ci NOT NULL, 
+  PRIMARY KEY (
+      id
+  )
+) ENGINE=InnoDB AUTO_INCREMENT=118681 ROW_FORMAT=DYNAMIC DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE winereviews_wine COMMENT = '';
+CREATE TABLE winereviews_winery (
+  id         Integer(11) NOT NULL AUTO_INCREMENT,
+  `name`     NVarChar(255) COLLATE utf8_general_ci NOT NULL,
+  region     NVarChar(255) COLLATE utf8_general_ci NOT NULL,
+  province   NVarChar(255) COLLATE utf8_general_ci NOT NULL,
+  country    NVarChar(255) COLLATE utf8_general_ci NOT NULL,
+  created_at DateTime NOT NULL,
+  updated_at DateTime NOT NULL, 
+  PRIMARY KEY (
+      id
+  )
+) ENGINE=InnoDB AUTO_INCREMENT=16386 ROW_FORMAT=DYNAMIC DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE winereviews_winery COMMENT = '';
+/*******************************************************************************
+ * Tables
+ * ------
+ * Extracted at 5/6/2018 6:18:04 PM
+ ******************************************************************************/
+
+ALTER TABLE auth_group
+ENGINE=InnoDB ROW_FORMAT=DYNAMIC DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE auth_group_permissions
+ENGINE=InnoDB ROW_FORMAT=DYNAMIC DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE auth_permission
+ENGINE=InnoDB ROW_FORMAT=DYNAMIC DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE auth_user
+ENGINE=InnoDB ROW_FORMAT=DYNAMIC DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE auth_user_groups
+ENGINE=InnoDB ROW_FORMAT=DYNAMIC DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE auth_user_user_permissions
+ENGINE=InnoDB ROW_FORMAT=DYNAMIC DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE django_admin_log
+ENGINE=InnoDB ROW_FORMAT=DYNAMIC DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE django_content_type
+ENGINE=InnoDB ROW_FORMAT=DYNAMIC DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE django_migrations
+ENGINE=InnoDB ROW_FORMAT=DYNAMIC DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE django_session
+ENGINE=InnoDB ROW_FORMAT=DYNAMIC DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE polls_choice
+ENGINE=InnoDB ROW_FORMAT=DYNAMIC DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE polls_question
+ENGINE=InnoDB ROW_FORMAT=DYNAMIC DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE winereviews_review
+ENGINE=InnoDB ROW_FORMAT=DYNAMIC DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE winereviews_variety
+ENGINE=InnoDB ROW_FORMAT=DYNAMIC DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE winereviews_wine
+ENGINE=InnoDB ROW_FORMAT=DYNAMIC DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE winereviews_winery
+ENGINE=InnoDB ROW_FORMAT=DYNAMIC DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+/*******************************************************************************
+ * Views
+ * -----
+ * Extracted at 5/6/2018 6:18:04 PM
+ ******************************************************************************/
+
+CREATE VIEW winery_report
+(
+ `name`,
+ province,
+ region,
+ country,
+ wine_count,
+ varietal_count
+) AS
+select `w1`.`name` AS `name`,`w1`.`province` AS `province`,`w1`.`region` AS `region`,`w1`.`country` AS `country`,`w1`.`wine_count` AS `wine_count`,count(distinct `w2`.`variety_id`) AS `varietal_count` from ((select `isommelier`.`winereviews_winery`.`id` AS `id`,`isommelier`.`winereviews_winery`.`name` AS `name`,`isommelier`.`winereviews_winery`.`province` AS `province`,`isommelier`.`winereviews_winery`.`region` AS `region`,`isommelier`.`winereviews_winery`.`country` AS `country`,count(distinct `isommelier`.`winereviews_wine`.`id`) AS `wine_count` from (`isommelier`.`winereviews_winery` join `isommelier`.`winereviews_wine` on(`isommelier`.`winereviews_winery`.`id` = `isommelier`.`winereviews_wine`.`winery_id`)) group by `isommelier`.`winereviews_winery`.`id`,`isommelier`.`winereviews_winery`.`name`,`isommelier`.`winereviews_winery`.`province`,`isommelier`.`winereviews_winery`.`region`,`isommelier`.`winereviews_winery`.`country`) `w1` join `isommelier`.`winereviews_wine` `w2` on(`w1`.`id` = `w2`.`winery_id`)) group by `w1`.`id`,`w1`.`name`,`w1`.`province`,`w1`.`region`,`w1`.`country`,`w1`.`wine_count`;
+/*******************************************************************************
+ * Indices
+ * -------
+ * Extracted at 5/6/2018 6:18:04 PM
+ ******************************************************************************/
+
+CREATE INDEX django_session_expire_date_a5c62663 
+ ON django_session(expire_date);
+CREATE INDEX idx_wine__description 
+ ON winereviews_wine(description);
+CREATE FULLTEXT INDEX `name` 
+ ON winereviews_wine(`name`, description, varietal);
+CREATE INDEX idx_winery__county__province__region__name 
+ ON winereviews_winery(country, province, region, `name`);
+/*******************************************************************************
+ * Unique Constraints
+ * ------------------
+ * Extracted at 5/6/2018 6:18:04 PM
+ ******************************************************************************/
+
+ALTER TABLE auth_group ADD CONSTRAINT `name` UNIQUE 
+    (`name`);
+
+ALTER TABLE auth_group_permissions ADD CONSTRAINT auth_group_permissions_group_id_permission_id_0cd325b0_uniq UNIQUE 
+    (group_id, permission_id);
+
+ALTER TABLE auth_permission ADD CONSTRAINT auth_permission_content_type_id_codename_01ab375a_uniq UNIQUE 
+    (content_type_id, codename);
+
+ALTER TABLE auth_user ADD CONSTRAINT username UNIQUE 
+    (username);
+
+ALTER TABLE auth_user_groups ADD CONSTRAINT auth_user_groups_user_id_group_id_94350c0c_uniq UNIQUE 
+    (user_id, group_id);
+
+ALTER TABLE auth_user_user_permissions ADD CONSTRAINT auth_user_user_permissions_user_id_permission_id_14a6b632_uniq UNIQUE 
+    (user_id, permission_id);
+
+ALTER TABLE django_content_type ADD CONSTRAINT django_content_type_app_label_model_76bd3d3b_uniq UNIQUE 
+    (app_label, model);
+
+/*******************************************************************************
+ * Foreign Key Constraints
+ * -----------------------
+ * Extracted at 5/6/2018 6:18:04 PM
+ ******************************************************************************/
+
+ALTER TABLE auth_group_permissions ADD CONSTRAINT auth_group_permissions_group_id_b120cbf9_fk_auth_group_id FOREIGN KEY (group_id)
+  REFERENCES auth_group (id)
+  ON DELETE NO ACTION 
+  ON UPDATE NO ACTION;
+
+ALTER TABLE auth_group_permissions ADD CONSTRAINT auth_group_permissio_permission_id_84c5c92e_fk_auth_perm FOREIGN KEY (permission_id)
+  REFERENCES auth_permission (id)
+  ON DELETE NO ACTION 
+  ON UPDATE NO ACTION;
+
+ALTER TABLE auth_permission ADD CONSTRAINT auth_permission_content_type_id_2f476e4b_fk_django_co FOREIGN KEY (content_type_id)
+  REFERENCES django_content_type (id)
+  ON DELETE NO ACTION 
+  ON UPDATE NO ACTION;
+
+ALTER TABLE auth_user_groups ADD CONSTRAINT auth_user_groups_group_id_97559544_fk_auth_group_id FOREIGN KEY (group_id)
+  REFERENCES auth_group (id)
+  ON DELETE NO ACTION 
+  ON UPDATE NO ACTION;
+
+ALTER TABLE auth_user_groups ADD CONSTRAINT auth_user_groups_user_id_6a12ed8b_fk_auth_user_id FOREIGN KEY (user_id)
+  REFERENCES auth_user (id)
+  ON DELETE NO ACTION 
+  ON UPDATE NO ACTION;
+
+ALTER TABLE auth_user_user_permissions ADD CONSTRAINT auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id FOREIGN KEY (user_id)
+  REFERENCES auth_user (id)
+  ON DELETE NO ACTION 
+  ON UPDATE NO ACTION;
+
+ALTER TABLE auth_user_user_permissions ADD CONSTRAINT auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm FOREIGN KEY (permission_id)
+  REFERENCES auth_permission (id)
+  ON DELETE NO ACTION 
+  ON UPDATE NO ACTION;
+
+ALTER TABLE django_admin_log ADD CONSTRAINT django_admin_log_content_type_id_c4bce8eb_fk_django_co FOREIGN KEY (content_type_id)
+  REFERENCES django_content_type (id)
+  ON DELETE NO ACTION 
+  ON UPDATE NO ACTION;
+
+ALTER TABLE django_admin_log ADD CONSTRAINT django_admin_log_user_id_c564eba6_fk FOREIGN KEY (user_id)
+  REFERENCES auth_user (id)
+  ON DELETE NO ACTION 
+  ON UPDATE NO ACTION;
+
+ALTER TABLE polls_choice ADD CONSTRAINT polls_choice_question_id_c5b4b260_fk_polls_question_id FOREIGN KEY (question_id)
+  REFERENCES polls_question (id)
+  ON DELETE NO ACTION 
+  ON UPDATE NO ACTION;
+
+ALTER TABLE winereviews_review ADD CONSTRAINT winereviews_review_user_id_838acc0d_fk_auth_user_id FOREIGN KEY (user_id)
+  REFERENCES auth_user (id)
+  ON DELETE NO ACTION 
+  ON UPDATE NO ACTION;
+
+ALTER TABLE winereviews_review ADD CONSTRAINT winereviews_review_wine_id_3d87efd7_fk_winereviews_wine_id FOREIGN KEY (wine_id)
+  REFERENCES winereviews_wine (id)
+  ON DELETE NO ACTION 
+  ON UPDATE NO ACTION;
+
+ALTER TABLE winereviews_wine ADD CONSTRAINT winereviews_wine_variety_id_82d3348e_fk_winereviews_variety_id FOREIGN KEY (variety_id)
+  REFERENCES winereviews_variety (id)
+  ON DELETE NO ACTION 
+  ON UPDATE NO ACTION;
+
+ALTER TABLE winereviews_wine ADD CONSTRAINT winereviews_wine_winery_id_9146e78c_fk_winereviews_winery_id FOREIGN KEY (winery_id)
+  REFERENCES winereviews_winery (id)
+  ON DELETE NO ACTION 
+  ON UPDATE NO ACTION;
+
+/*******************************************************************************
+ * Stored Procedures
+ * -----------------
+ * Extracted at 5/6/2018 6:18:04 PM
+ ******************************************************************************/
+
+CREATE PROCEDURE updateVintage()
+  NO SQL
+BEGIN
+ 
+ DECLARE v_finished INTEGER DEFAULT 0; 
+ DECLARE v_id integer ;
+ DECLARE v_vintage varchar(50) DEFAULT "";
+ 
+ DEClARE description_cursor CURSOR FOR 
+ SELECT id, REGEXP_SUBSTR(description,'[0-9]+') as vintage from winereviews_wine;
+ 
+ -- declare NOT FOUND handler
+ DECLARE CONTINUE HANDLER 
+        FOR NOT FOUND SET v_finished = 1;
+ 
+ OPEN description_cursor;
+ 
+ get_vintage: LOOP
+ 
+ FETCH description_cursor INTO v_id,v_vintage;
+ 
+ IF v_finished = 1 THEN 
+ LEAVE get_vintage;
+ END IF;
+ 
+ -- build email list
+ update winereviews_wine set vintage =v_vintage where id =v_id;
+ 
+ END LOOP get_vintage;
+ 
+ CLOSE description_cursor;
+ 
+END
+/
+/*******************************************************************************
+ * Triggers
+ * --------
+ * Extracted at 5/6/2018 6:18:04 PM
+ ******************************************************************************/
+
+CREATE TRIGGER flag_user
+  AFTER UPDATE
+  ON winereviews_review FOR EACH ROW
+IF NEW.flag > 0 THEN 
+update auth_user set flag =1 where id = NEW.user_id; 
+END IF
+/
