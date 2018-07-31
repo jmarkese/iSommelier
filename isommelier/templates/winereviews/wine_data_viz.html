@@ -1,0 +1,307 @@
+{% extends "winereviews/design_base.html" %}
+{% load static %}
+
+{% block custom_styles_block%}
+<style type="text/css">
+    
+  .text{
+    font-size:12px;
+    text-transform:capitalize;
+  }
+  
+  svg g text tspan {
+    pointer-events: none;
+  }
+  
+  .bar { 
+    /*fill: rgb(156, 158, 222);*/
+  }
+  
+  path.domain,
+  g.tick,
+  g.tick line {
+    stroke: #999;
+  }
+  
+  path.domain text,
+  g.tick text {
+    stroke: none;
+  }
+  
+  .svg-container {
+    display:inline;
+    height:500px;
+  }
+  
+  .chartTitle {
+    font-size:18px;
+  }
+  
+  /*#slider {*/
+  /*  display:inline;*/
+  /*}*/
+
+  
+  .ticks {
+    font: 10px sans-serif;
+  }
+  
+  .track,
+  .track-inset,
+  .track-overlay {
+    stroke-linecap: round;
+  }
+  
+  .track {
+    stroke: #000;
+    stroke-opacity: 0.3;
+    stroke-width: 10px;
+  }
+  
+  .track-inset {
+    stroke: #ddd;
+    stroke-width: 8px;
+  }
+  
+  .track-overlay {
+    pointer-events: stroke;
+    stroke-width: 50px;
+    stroke: transparent;
+    cursor: ew-resize;
+  }
+  
+  .handle {
+    fill: #fff;
+    stroke: #000;
+    stroke-opacity: 0.5;
+    stroke-width: 1.25px;
+  }
+
+  input[type=button] {
+    border: none;
+    border-radius: 100px;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+  
+  input[type=button]:hover {
+    color: #fff;    
+  }
+
+
+  input[type=button].bar_hi {
+    background-color: rgba(156, 158, 222, .5)
+  }
+  input[type=button].bar_lo {
+    background-color: rgba(214, 97, 107, .5);
+  }
+  input[type=button].bar_exp {
+    background-color: rgba(99, 121, 57, .5);
+  }
+  input[type=button].about {
+    background-color: rgba(0,0,0, .5);
+  }
+  
+  input[type=button].about:hover {
+    background-color: rgba(0,0,0, 1);
+  }
+  input[type=button].bar_lo:hover {
+    background-color: rgba(214, 97, 107, 1);
+  }
+  input[type=button].bar_hi:hover {
+    background-color: rgba(156, 158, 222, 1)
+  }
+  input[type=button].bar_exp:hover {
+    background-color: rgba(99, 121, 57, 1);
+  }
+  
+  
+  #masthead div#slide_buttons {
+    display:inline;
+    vertical-align: middle;
+    margin-left: 180px;
+  }
+  #masthead h1 {
+    color:#999;
+    font-weight: 100;
+    font-size:2.2em;
+    display:inline;
+    vertical-align: middle;
+  }
+
+  div#masthead {
+    width:1050px;
+    margin: auto;
+    margin-top: -42px;
+  }
+  
+  div#masthead_bg {
+    background-color:#e6e6e6;
+    width:100%;
+    height:80px;
+  }
+  
+  h3 {
+    color:#999;
+    font-weight:200;
+    font-size:1.8em;
+    padding-top:1em;
+  }
+  
+  .columns {
+    column-width: 200px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .grid {
+    font-weight:100;
+    font-size:.9em;
+    line-height:1.6em;
+    color:#888;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-auto-rows: 2em;
+    grid-gap: 1.2em;
+    height: 800px;
+
+  }
+  
+  .top5 text {
+    font-size:.7em;
+  }
+  
+  .top5heading {
+    font-weight:bold;
+  }
+
+</style>
+{% endblock %}
+
+{% block custom_head %}
+
+<title>Word Usage in Wine Reviews</title>
+
+{% endblock %}
+
+
+{% block header %}
+<div id="masthead_bg"></div>
+
+<div id="masthead">
+  <h1>Word Usage in Wine Reviews</h1>
+  
+    <div id='slide_buttons' class=''>
+        <input 
+           class='changeChartButton bar_hi'
+           data-chartId="#bar_hi"
+           type="button" 
+           value="Highest Rated"
+            />
+        <input 
+           class='changeChartButton bar_lo'
+           data-chartId="#bar_lo"
+           type="button" 
+           value="Lowest Rated" 
+            />
+        <input 
+           class='changeChartButton bar_exp'
+           data-chartId="#bar_exp"
+           type="button" 
+           value="Most Expensive" 
+            />
+        <!--<input -->
+        <!--   class='about'-->
+        <!--   type="button" -->
+        <!--   value="About This Viz" -->
+        <!--    />-->
+  </div>
+
+</div>
+{% endblock %}
+
+
+{% block content %}
+<div>
+  <div id='bubble1' class='svg-container'></div>
+  <div id='bar_hi' class='svg-container changeChart' 
+    ></div>
+  <div id='bar_lo' class='svg-container changeChart' 
+    style="display:none"
+    ></div>
+  <div id='bar_exp' class='svg-container changeChart' 
+    style="display:none"
+    ></div>
+  <svg id='slider' width="1024" height="50"></svg>
+</div>
+
+
+<h3>About This Vizualization</h3>
+<div class="grid">
+  <div>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget sapien odio. Ut feugiat luctus mi eu semper. Aenean id turpis in eros interdum fringilla at eu leo. Fusce fermentum vulputate ante, sed malesuada velit maximus elementum. Phasellus ac viverra justo. Aliquam nec erat ac massa convallis pharetra. Etiam eros sapien, molestie non erat non, dictum iaculis lacus. Cras condimentum non lacus vitae volutpat.  Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Pellentesque sit amet sapien dictum, viverra libero eget, faucibus sapien.
+  </div>
+  <div>
+    Suspendisse enim mauris, condimentum bibendum justo sit amet, dignissim pretium diam. Praesent imperdiet rhoncus auctor. Vestibulum vestibulum ipsum in mauris luctus molestie. Nam cursus dolor a ante mattis dapibus. Duis faucibus leo at massa tempus eleifend. Pellentesque et feugiat dolor, sit amet fringilla velit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse ac diam in odio dictum laoreet ut a leo. Aliquam blandit, urna ut pellentesque lacinia, nisl lacus sodales velit, ac laoreet tellus nisl a sem. Sed eros justo, aliquam viverra lacus in, condimentum mattis odio. Mauris nec tellus sed ante aliquam rutrum. Phasellus porttitor pellentesque nibh. Maecenas elementum risus eget arcu porttitor, sed vulputate libero vestibulum.
+  </div>
+  <div>
+    Sed gravida malesuada urna. Quisque ornare tristique dui in rutrum. Curabitur mollis bibendum nibh, quis bibendum leo rhoncus eu. Phasellus condimentum vulputate leo sodales cursus. Maecenas suscipit ante eget molestie aliquet. Pellentesque tempus, diam elementum blandit dignissim, tortor nisi sollicitudin metus, quis efficitur leo metus non leo. Aenean ut tempus urna, ut auctor velit. Cras lacus lectus, tristique id lobortis ut, pellentesque at ante. Ut vitae tristique leo. Nullam at lectus porttitor, ullamcorper metus et, tincidunt velit. Sed dapibus erat et interdum pulvinar. Duis et congue risus. Pellentesque lorem est, fermentum ac iaculis in, ultricies non metus. Cras sed finibus erat, at gravida quam.
+  </div>
+  <div>
+    Donec blandit, risus vel aliquet pretium, lectus magna lobortis nunc, malesuada tempor nibh ex nec massa. Phasellus elementum massa eu lorem imperdiet, a tempor massa dictum. Nunc vel mi sit amet mauris tempus mollis. Integer mollis auctor leo. Aliquam erat volutpat. Nam a sem at tortor tristique hendrerit. Mauris pellentesque velit vel odio suscipit, quis dignissim est commodo. Donec fermentum volutpat massa. Ut tortor erat, auctor vel tristique auctor, pellentesque quis augue. Integer interdum, risus at auctor iaculis, dolor orci imperdiet mi, vitae pharetra quam ligula non tellus. Sed id ipsum justo. In ut tincidunt leo. Quisque lectus nisl, semper ac massa quis, sollicitudin posuere diam.
+  </div>
+  <div></div>
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+
+<script>
+
+initNum = 25;
+opacityStart = 0.50;
+opacityRollover = 1.0;
+chartText = "#888";
+
+barChartWidth = 624;
+barChartHeight = 400;
+
+var format = d3.format(",d");
+
+var changeChartButtons = d3.selectAll(".changeChartButton")
+  .on("click", function(d){
+    showChartId = d3.select(this).attr("data-chartId");
+    d3.selectAll(".changeChart")
+      .style("display", "none");
+    d3.select(showChartId)
+      .style("display", "inline");
+  });
+  
+var tooltip = d3.select("body")
+    .append("div")
+    .style("position", "absolute")
+    .style("z-index", "10")
+    .style("visibility", "hidden")
+    .style("color", "white")
+    .style("padding", "8px")
+    .style("background-color", "rgba(0, 0, 0, 0.75)")
+    .style("border-radius", "6px")
+    .style("font", "12px sans-serif")
+    .text("tooltip");
+
+</script>
+
+<script src="{% static "js/tooltip.js" %}"></script>
+<script src="{% static "js/slider.js" %}"></script>
+<script src="{% static "js/word-count-bubble.js" %}"></script>
+<script src="{% static "js/word-count-hi-bar.js" %}"></script>
+<script src="{% static "js/word-count-lo-bar.js" %}"></script>
+<script src="{% static "js/word-count-exp-bar.js" %}"></script>
+
+{% endblock %}

@@ -24,15 +24,212 @@ def index(request):
     }
     return HttpResponse(template.render(context, request))
 
+
+
 def winebycountry(request):
     form = WineReviewHiddenSearchForm()
     return render(request, 'winereviews/worldmap-template.html', {'form': form})
-    #
-    # template = loader.get_template('winereviews/worldmap-template.html')
-    # context = {
-    #     'a_var': 0,
-    # }
-    # return HttpResponse(template.render(context, request))
+
+
+
+def wine_data_viz(request):
+    template = loader.get_template('winereviews/wine_data_viz.html')
+    context = {
+        'form': WineReviewHiddenSearchForm()
+    }
+    return HttpResponse(template.render(context, request))
+
+    
+def word_count_stats_rating_hi(request, number=200):
+    response = HttpResponse(content_type='text/plain')
+
+    sql = '''
+    SELECT B.word, COUNT(winereviews_review_id) word_count, C.avg_rating
+    FROM word_root_review A
+    JOIN 
+    (
+        SELECT Y.root, Y.word 
+        FROM (
+            SELECT root, MAX(count) AS max_count FROM word_root GROUP BY root
+        ) X 
+        INNER JOIN word_root Y ON Y.root = X.root 
+        AND Y.count = X.max_count GROUP BY Y.root
+    ) B ON B.root = A.root
+    JOIN word_root_sum C ON C.root = A.root
+    WHERE winereviews_review_id IN
+        (
+            SELECT B.id
+            FROM winereviews_review B
+            JOIN 
+            (
+                SELECT A.id, AVG(rating) avg_rating
+                FROM winereviews_wine A 
+                JOIN winereviews_review B ON B.wine_id = A.id 
+                GROUP BY A.id
+                ORDER BY avg_rating DESC LIMIT 100
+            ) A ON B.wine_id = A.id
+        )
+    AND A.root NOT IN ('–','—','“','”','$','it','%%','(',')','10')
+    AND A.root NOT LIKE '20%%'
+    GROUP BY A.root
+    ORDER BY word_count DESC, word DESC
+    LIMIT %s;
+    '''
+
+    # sql = '''
+    # SELECT B.word, COUNT(winereviews_review_id) word_count, AVG(C.rating) avg_rating
+    # FROM word_root_review A
+    # JOIN 
+    # (
+    #     SELECT Y.root, Y.word 
+    #     FROM (
+    #         SELECT root, MAX(count) AS max_count FROM word_root GROUP BY root
+    #     ) X 
+    #     INNER JOIN word_root Y ON Y.root = X.root 
+    #     AND Y.count = X.max_count GROUP BY Y.root
+    # ) B ON B.root = A.root
+    # JOIN winereviews_review C ON C.id = A.winereviews_review_id
+    # WHERE winereviews_review_id IN
+    #     (
+    #         SELECT B.id
+    #         FROM winereviews_review B
+    #         JOIN 
+    #         (
+    #             SELECT A.id, AVG(rating) avg_rating
+    #             FROM winereviews_wine A 
+    #             JOIN winereviews_review B ON B.wine_id = A.id 
+    #             GROUP BY A.id
+    #             ORDER BY avg_rating DESC LIMIT 100
+    #         ) A ON B.wine_id = A.id
+    #     )
+    # AND A.root NOT IN ('–','—','“','”','$','it','%%','(',')','10')
+    # AND A.root NOT LIKE '20%%'
+    # GROUP BY A.root
+    # ORDER BY word_count DESC, word DESC
+    # LIMIT %s;
+    # '''
+    
+    with connection.cursor() as cursor:
+        cursor.execute(sql, [number])
+        words = cursor.fetchall()
+
+    writer = csv.writer(response)
+    writer.writerow(['id','value','avg_rating'])
+    for w in words:
+        writer.writerow([w[0], w[1], w[2]])
+    return response 
+
+def word_count_stats_rating_lo(request, number=200):
+    response = HttpResponse(content_type='text/plain')
+
+    sql = '''
+    SELECT B.word, COUNT(winereviews_review_id) word_count, C.avg_rating
+    FROM word_root_review A
+    JOIN 
+    (
+        SELECT Y.root, Y.word 
+        FROM (
+            SELECT root, MAX(count) AS max_count FROM word_root GROUP BY root
+        ) X 
+        INNER JOIN word_root Y ON Y.root = X.root 
+        AND Y.count = X.max_count GROUP BY Y.root
+    ) B ON B.root = A.root
+    JOIN word_root_sum C ON C.root = A.root
+    WHERE winereviews_review_id IN
+        (
+            SELECT B.id
+            FROM winereviews_review B
+            JOIN 
+            (
+                SELECT A.id, AVG(rating) avg_rating
+                FROM winereviews_wine A 
+                JOIN winereviews_review B ON B.wine_id = A.id 
+                GROUP BY A.id
+                ORDER BY avg_rating ASC LIMIT 100
+            ) A ON B.wine_id = A.id
+        )
+    AND A.root NOT IN ('–','—','“','”','$','it','%%','(',')','10')
+    AND A.root NOT LIKE '20%%'
+    GROUP BY A.root
+    ORDER BY word_count DESC, word DESC
+    LIMIT %s;
+    '''
+    
+    with connection.cursor() as cursor:
+        cursor.execute(sql, [number])
+        words = cursor.fetchall()
+
+    writer = csv.writer(response)
+    writer.writerow(['id','value','avg_rating'])
+    for w in words:
+        writer.writerow([w[0], w[1], w[2]])
+    return response
+    
+    
+def word_count_stats_expensive(request, number=200):
+    response = HttpResponse(content_type='text/plain')
+
+    sql = '''
+    SELECT B.word, COUNT(winereviews_review_id) word_count, AVG(D.price)
+    FROM word_root_review A
+    JOIN 
+    (
+        SELECT Y.root, Y.word 
+        FROM (
+            SELECT root, MAX(count) AS max_count FROM word_root GROUP BY root
+        ) X 
+        INNER JOIN word_root Y ON Y.root = X.root 
+        AND Y.count = X.max_count GROUP BY Y.root
+    ) B ON B.root = A.root
+    JOIN winereviews_review C ON C.id = A.winereviews_review_id
+    JOIN winereviews_wine D ON D.id = C.wine_id
+    WHERE winereviews_review_id IN
+        (
+            SELECT B.id
+            FROM winereviews_review B
+            JOIN 
+            (
+                SELECT A.id
+                FROM winereviews_wine A 
+                ORDER BY price DESC LIMIT 100
+            ) A ON B.wine_id = A.id
+        )
+    AND A.root NOT IN ('–','—','“','”','$','it','%%','(',')','10')
+    AND A.root NOT LIKE '20%%'
+    GROUP BY A.root
+    ORDER BY word_count DESC, word DESC
+    LIMIT %s;
+    '''
+    
+    with connection.cursor() as cursor:
+        cursor.execute(sql, [number])
+        words = cursor.fetchall()
+
+    writer = csv.writer(response)
+    writer.writerow(['id','value','avg_price'])
+    for w in words:
+        writer.writerow([w[0], w[1], w[2]])
+    return response 
+
+    
+def word_count_stats(request, number=200):
+    response = HttpResponse(content_type='text/plain')
+
+    sql = ''' 
+        SELECT word, sum_count, avg_rating FROM word_root_sum WHERE skip = 0 LIMIT %s;
+    '''
+    with connection.cursor() as cursor:
+        cursor.execute(sql, [number])
+        words = cursor.fetchall()
+
+    writer = csv.writer(response)
+    writer.writerow(['id','value','rating'])
+    for w in words:
+        writer.writerow([w[0], w[1], w[2]])
+    return response   
+
+
+
 
 def consultancy(request):
     template = loader.get_template('winereviews/consultancy.html')
@@ -275,6 +472,8 @@ def wine_review_search(request):
                 SELECT id FROM winereviews_review 
                 WHERE MATCH(comment_nlp) AGAINST(%s IN NATURAL LANGUAGE MODE) LIMIT 20
             '''
+            
+            #return HttpResponse(sql)
 
             results = Review.objects.raw(sql, [against])
 

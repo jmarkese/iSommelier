@@ -14,6 +14,28 @@ def get_comment_nlp(comment):
     tok.set_content(doc.content())
     tokens = [token for token in tok]
     return " ".join(tokens)
+    
+    
+def get_word_root_dict(comment):
+    doc = metapy.index.Document()
+    doc.content(comment)
+    tok = metapy.analyzers.ICUTokenizer(suppress_tags=True)
+    stop_words = "../isommelier/nlp/lemur-stopwords.txt"
+    tok = metapy.analyzers.ListFilter(tok, stop_words, metapy.analyzers.ListFilter.Type.Reject)
+    tok.set_content(doc.content())
+    tokens = [token for token in tok]
+    tokens = dict((word, get_root_word(word)) for word in tokens)
+    return tokens
+    
+    
+def get_root_word(tok):
+    doc = metapy.index.Document()
+    doc.content(tok)
+    tok = metapy.analyzers.ICUTokenizer(suppress_tags=True)
+    tok = metapy.analyzers.Porter2Filter(tok)
+    tok.set_content(doc.content())
+    tokens = [token for token in tok]
+    return " ".join(tokens)
 
 
 user_in = 'keytotalers'  # input("Username:")
@@ -42,7 +64,7 @@ with open('winemag-data-130k-v2-clean.csv', 'r') as csvfile:
         user_name = row[10]
         description = row[11]
         rating = row[4]
-        comment = row[2]
+        comment = row[2].lower()
         province = row[6]
         region = row[7]
         winery_name = row[13]
@@ -70,6 +92,18 @@ with open('winemag-data-130k-v2-clean.csv', 'r') as csvfile:
             'INSERT INTO winereviews_review(comment, user_id, wine_id, rating, created_at, updated_at, comment_nlp) VALUES(%s,%s,%s,%s,NOW(),NOW(), %s)',
             values)
         mydb.commit()
+        
+        cursor.execute("SELECT LAST_INSERT_ID();")
+        review_id = cursor.fetchone()
 
+        comment_words = get_word_root_dict(str(comment))
+        for word, root in comment_words.items():
+            cursor.execute('''
+                REPLACE INTO word_root_review(root, winereviews_review_id) VALUES(%s, %s);
+                INSERT INTO word_root (word, root) VALUES(%s, %s) ON DUPLICATE KEY UPDATE count = count + 1;
+            ''', [root, review_id, word, root])
+
+        
+        
 cursor.close()
 

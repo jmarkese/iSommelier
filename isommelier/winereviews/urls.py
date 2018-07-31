@@ -1,4 +1,5 @@
 from django.urls import path
+from django.urls import re_path
 from django.conf.urls import url, include
 from winereviews.views import ReviewList, ReviewUpdate, ReviewDelete
 from winereviews.views import WineList, WineCreate, WineUpdate, WineDelete
@@ -13,7 +14,12 @@ urlpatterns = [
     path('variety_options/', views.variety_options, name='variety_options'),
     path('variety_reviews/<int:variety_id>', views.variety_reviews, name='variety_reviews'),
     path('wine_review_search/', views.wine_review_search, name='wine_review_search'),
-
+    path('wine_data_viz/', views.wine_data_viz, name='wine_data_viz'),
+    path('word_count_stats/<int:number>', views.word_count_stats, name='word_count_stats'),
+    path('word_count_stats_expensive/<int:number>', views.word_count_stats_expensive, name='word_count_stats_expensive'),
+    path('word_count_stats_rating_hi/<int:number>', views.word_count_stats_rating_hi, name='word_count_stats_rating_hi'),
+    path('word_count_stats_rating_lo/<int:number>', views.word_count_stats_rating_lo, name='word_count_stats_rating_lo'),
+    
     # Reviews CRUD
     path('review_create/', views.review_create, name='review_create'),
     path('review_delete/<int:review_id>', views.review_delete, name='review_delete'),

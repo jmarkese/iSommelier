@@ -4,4 +4,46 @@ ALTER TABLE winereviews_review ADD FULLTEXT (comment);
 ALTER TABLE winereviews_review ADD COLUMN comment_nlp TEXT;
 ALTER TABLE winereviews_review ADD FULLTEXT idx__winereviews_review__comment_nlp (comment_nlp);
 
+-- alter table winereviews_review add column comment_only_nlp text;
+-- ALTER TABLE winereviews_review ADD FULLTEXT idx__winereviews_review__comment_only_nlp (comment_only_nlp);
+
 CREATE view country_wine_count AS SELECT A.country, count(*) wine_count FROM winereviews_winery A JOIN winereviews_wine B on B.winery_id = A.id GROUP BY A.country;
+
+CREATE TABLE word_count (word varchar(255), nlp varchar(255), PRIMARY KEY (nlp, word));
+CREATE TABLE nlp_review (nlp varchar(255), winereviews_review_id int, PRIMARY KEY (nlp, winereviews_review_id));
+
+CREATE TABLE word_root (word varchar(255), root varchar(255), count int DEFAULT 1, PRIMARY KEY (word, root));
+CREATE TABLE word_root_review (root varchar(255), winereviews_review_id int, PRIMARY KEY (root, winereviews_review_id));
+
+
+
+-- Review words stats. Word count and average rating
+CREATE TABLE word_root_sum (root varchar(255), word varchar(255), sum_count int, avg_rating float(6,4), skip BOOLEAN DEFAULT 0);
+
+INSERT INTO word_root_sum SELECT A.root, B.word, SUM(A.count) sum_count 
+FROM word_root A
+JOIN (SELECT Y.root, Y.word FROM (SELECT root, MAX(count) AS max_count FROM word_root GROUP BY root) X 
+INNER JOIN word_root Y ON Y.root = X.root AND Y.count = X.max_count GROUP BY Y.root) B ON B.root = A.root 
+WHERE A.root NOT IN ('–', 'it', '%', 'there', '1','2','3','4','5','6','7','8','9','0')
+GROUP BY A.root ORDER BY sum_count DESC;
+
+ALTER TABLE word_root_sum ADD COLUMN avg_rating float(6,4);
+
+-- ignore some items
+UPDATE word_root_sum SET skip=1 WHERE word IN ('1','2','3','4','5','6','7','8','9','0','“', '”', ';', '80', '70', '60', '50', '40', '30', '90', '25', '18', '15', '12', ':');
+UPDATE word_root_sum SET skip=1 WHERE word LIKE '20%';
+UPDATE word_root_sum SET skip=1 WHERE word LIKE '10%';
+
+
+-- update the average rating
+UPDATE word_root_sum Z
+        JOIN (
+            SELECT C.root, AVG(rating) AS avg_r 
+            FROM word_root_review A 
+            JOIN winereviews_review B ON A.winereviews_review_id = B.id 
+            JOIN (
+                SELECT * FROM word_root_sum
+                ) C ON C.root = A.root 
+            GROUP BY C.root 
+        ) AS X ON Z.root = X.root
+        SET Z.avg_rating = avg_r;

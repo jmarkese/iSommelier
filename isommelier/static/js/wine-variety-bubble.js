@@ -26,6 +26,7 @@ var pack1 = d3.pack()
     .padding(1.5); 
 
 d3.csv("../../winereviews/wine_variety_stats/", function(d) {
+    console.log(d);
   d.value = +d.value;
   if (d.value) return d;
 }, function(error, classes) {

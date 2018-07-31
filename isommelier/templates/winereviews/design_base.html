@@ -1,0 +1,61 @@
+{% load i18n static %}<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="//d3js.org/d3.v4.js"></script>
+    <style>
+
+      body
+      {
+          font-family: "Lato", sans-serif;
+          background-color: #efefef;
+          margin:0;
+      }
+      div.main
+      {
+        width:1050px;
+        margin: auto;
+        padding-top: 50px;
+      }
+      /* Jquery UI Override */
+      .ui-widget
+      {
+          font-family: "Lato", sans-serif;
+      }
+
+      {% block custom_styles %}{% endblock %}
+
+    </style>
+    
+    {% block custom_styles_block %}{% endblock %}
+
+    {% block custom_head %}{% endblock %}
+
+  </head>
+
+  <body>
+
+      
+    {% block header %}
+    {% endblock %}
+
+    <div class="main">
+      <div> <!-- Slide Show -->
+        <section>
+        </section>
+      </div>
+      
+      
+      {% block content %}
+      {% endblock %}
+
+
+    </div>
+      
+    {% block scripts %}{% endblock %}
+    
+  </body>
+</html>

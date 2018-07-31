@@ -48,9 +48,11 @@ with open('winemag-data-130k-v2-clean.csv', 'r') as csvfile:
         
                 if variety_id is None:
                     variety_id = 1
+                    
+                vintage = re.search('[0-9][0-9][0-9][0-9]', description)
         
-                values = [wine_name, price, description, variety_id, winery_id, ""]
-                cursor.execute('INSERT INTO winereviews_wine(name, price, description, variety_id , winery_id, varietal, created_at, updated_at ) VALUES(%s,%s,%s,%s,%s,%s,NOW(),NOW())', values)
+                values = [wine_name, price, description, variety_id, winery_id, vintage, ""]
+                cursor.execute('INSERT INTO winereviews_wine(name, price, description, variety_id , winery_id, vintage, varietal, created_at, updated_at ) VALUES(%s,%s,%s,%s,%s,%s,NOW(),NOW())', values)
                 mydb.commit()
                 
         except Exception as e:
